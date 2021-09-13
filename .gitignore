@@ -16,6 +16,8 @@
 /.vsconfig
 /[Aa]ssets/NuGet.config
 /[Aa]ssets/packages.config
+/[Aa]ssets/NuGet.config.meta
+/[Aa]ssets/packages.config.meta
 /[Aa]ssets/NuGet/
 /[Aa]ssets/Plugins/
 /[Aa]ssets/Packages/

@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour{
 
     public void SubmitDebugInput(InputField inputField) {
         LogMsg("Send: " + inputField.text);
-        WebSocketDemo.SendMsg(MSG_TYPE.CHAT, inputField.text);
+        Networking.SendMsg(MSG_TYPE.CHAT, inputField.text);
         inputField.text = "";
     }
 }

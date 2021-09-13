@@ -11,13 +11,19 @@ public enum MSG_TYPE {
     AUTH,
     INIT,
     CHAT,
+    SPAWN,
+    MOVE,
     CHANGE_TRANSFORM,
     ERR
 }
 
-public class WebSocketDemo : MonoBehaviour {
+public class Networking : MonoBehaviour {
 
-    static WebSocketDemo Instance;
+    static Networking Instance;
+
+    [SerializeField] private string protocol = "ws";
+    [SerializeField] private string ip = "localhost";
+    [SerializeField] private string port = "4242";
 
     private WebSocket ws;
 
@@ -28,7 +34,7 @@ public class WebSocketDemo : MonoBehaviour {
     // Use this for initialization
     void Start () {
         // Create WebSocket instance
-        ws = WebSocketFactory.CreateInstance("ws://localhost:4242");
+        ws = WebSocketFactory.CreateInstance(protocol + "://" + ip + ":" + port);
 
         // Add OnOpen event listener
         ws.OnOpen += () => {
@@ -41,9 +47,17 @@ public class WebSocketDemo : MonoBehaviour {
             int msgType = (int)stringMsg[0];
             stringMsg = stringMsg.Substring(1);
 
-            UIManager.LogPhrase("msg", Enum.GetName(typeof(MSG_TYPE), msgType), stringMsg);
 
             // TODO switch over all MSG_TYPES
+            switch (msgType) {
+                case (int)MSG_TYPE.CHAT:
+                    UIManager.LogPhrase("msg", Enum.GetName(typeof(MSG_TYPE), msgType), stringMsg);
+                    break;
+                case (int)MSG_TYPE.MOVE:
+                    string[] arr = stringMsg.Split(' ');
+                    NetworkCharacter.Instance.transform.position = new Vector3(float.Parse(arr[0]), float.Parse(arr[1]), 0);
+                    break;
+            }
         };
 
         // Add OnError event listener
@@ -66,6 +80,6 @@ public class WebSocketDemo : MonoBehaviour {
     }
 
     public static void SendMsg(MSG_TYPE msgType, string msg) {
-        WebSocketDemo.Instance.ws.Send(Encoding.UTF8.GetBytes((char)msgType + msg));
+        Networking.Instance.ws.Send(Encoding.UTF8.GetBytes((char)msgType + msg));
     }
 }
