@@ -9,4 +9,11 @@
 
 4. Get the Plugins from https://github.com/jirihybek/unity-websocket-webgl
 
+5. Install the Cinemachine-Package in the Unity package manager
+
 ---
+
+## Building for WebGL
+1. Change at PlayerSettings -> Publishing Settings -> Compression Format to __Gzip__
+
+2. Check at PlayerSettings -> Resolution and Presentation -> __Run In Background__
