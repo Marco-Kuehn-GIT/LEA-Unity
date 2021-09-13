@@ -1,0 +1,62 @@
+{
+  "languages":[
+    {
+      "name":"English",
+      "phrases": [
+        {
+          "key": "test",
+          "value": "Hello this is a test!"
+        },
+        {
+          "key": "testWithArgs",
+          "value": "Hello @ this is a test with @!"
+        },
+        {
+          "key": "connected",
+          "value": "Connected to the @!"
+        },
+        {
+          "key": "err",
+          "value": "An error has occurred: @"
+        },
+        {
+          "key": "close",
+          "value": "WS closed with code: @"
+        },
+        {
+          "key": "msg",
+          "value": "Message(@): @"
+        }
+      ]
+    },
+    {
+        "name":"Deutsch",
+      "phrases": [
+        {
+          "key": "test",
+          "value": "Hallo das ist ein Test!"
+        },
+        {
+          "key": "testWithArgs",
+          "value": "Hallo @ das ist ein test mit @!"
+        },
+        {
+          "key": "connected",
+          "value": "Verbindung mit @ hergestellt!"
+        },
+        {
+          "key": "err",
+          "value": "Es ist ein Fehler aufgetreten: @"
+        },
+        {
+          "key": "close",
+          "value": "Ws geschlossen mit: @"
+        },
+        {
+          "key": "msg",
+          "value": "Nachricht(@): @"
+        }
+      ]
+    }
+  ]
+}
