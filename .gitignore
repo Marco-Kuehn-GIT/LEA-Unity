@@ -14,6 +14,11 @@
 /[Pp]ackages/
 
 /.vsconfig
+/[Aa]ssets/NuGet.config
+/[Aa]ssets/packages.config
+/[Aa]ssets/NuGet/
+/[Aa]ssets/Plugins/
+/[Aa]ssets/Packages/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
