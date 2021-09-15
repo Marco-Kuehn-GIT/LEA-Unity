@@ -3,16 +3,17 @@
 ## Installation
 1. Create a new Unity Project in the git-folder
 2. git init
-3. git add remote \<link\>
-4. 
+3. git remote add origin \<link\>
+4. git push --set-upstream origin master
+5. 
 
-5. Install NuGet for Unity: https://github.com/GlitchEnzo/NuGetForUnity/releases
+6. Install NuGet for Unity: https://github.com/GlitchEnzo/NuGetForUnity/releases
 
-6. Get the "websocket sharp-netstandard" via NuGet
+7. Get the "websocket sharp-netstandard" via NuGet
 
-7. Get the Plugins from https://github.com/jirihybek/unity-websocket-webgl
+8. Get the Plugins from https://github.com/jirihybek/unity-websocket-webgl
 
-8. Install the Cinemachine-Package in the Unity package manager
+9. Install the Cinemachine-Package in the Unity package manager
 
 ---
 
