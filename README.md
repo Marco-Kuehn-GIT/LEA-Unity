@@ -7,7 +7,7 @@
    
 3. git remote add origin \<link\>
 
-4. clear Assests folder 
+4. Clear Assests folder 
    
 5. git pull origin master
    
