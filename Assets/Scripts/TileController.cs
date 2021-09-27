@@ -43,7 +43,7 @@ public class TileController : MonoBehaviour{
 
     private TILE_TYPE[,] map;
 
-    private void ÔldAwake() {
+    private void OldAwake() {
         map = new TILE_TYPE[mapSize, mapSize];
         int halfMapSize = mapSize / 2;
         float offset = Random.Range(0f, 100f);
@@ -75,21 +75,73 @@ public class TileController : MonoBehaviour{
     }
 
     public void initMap(string initString) {
-        int x = int.Parse(initString.Substring(0, initString.IndexOf(" ")) );
-        initString = initString.Substring(initString.IndexOf(" "));
-        int y = int.Parse(initString.Substring(0, initString.IndexOf(" ")));
-        initString = initString.Substring(initString.IndexOf(" "));
-        int xSize = initString.IndexOf(" ");
+        int sizeX = int.Parse(initString.Substring(0, initString.IndexOf(" ")) );
+        initString = initString.Substring(initString.IndexOf(" ") + 1);
+
+        int sizeY = int.Parse(initString.Substring(0, initString.IndexOf(" ")));
+        initString = initString.Substring(initString.IndexOf(" ") + 1);
+
+        Debug.Log("initString.Length " + initString.Length);
+
+        map = new TILE_TYPE[sizeX, sizeY];
+        for (int i = 0; i < initString.Length; i++) {
+            //Debug.Log(i / sizeX + "," + i % sizeY + " " + (TILE_TYPE)((int)initString[i]));
+            map[i / sizeX, i % sizeY] = (TILE_TYPE)( (int)initString[i] );
+        }
+
+        string outStr = "";
+        for (int i = 0; i < sizeX; i++) {
+            for (int j = 0; j < sizeY; j++) {
+                outStr += map[i, j] + ",";
+            }
+            outStr += "\n";
+        }
+        Debug.Log(outStr);
+            
+
+        mapSize = sizeX;
+        int halfMapSize = mapSize / 2;
+
+        Debug.Log("transform Map");
+        TILE_TYPE[,] transformedMap = ApplayTileRules();
+
+        outStr = "";
+        for (int i = 0; i < sizeX; i++) {
+            for (int j = 0; j < sizeY; j++) {
+                outStr += transformedMap[i, j] + ",";
+            }
+            outStr += "\n";
+        }
+        Debug.Log(outStr);
+
+        for (int x = 0; x < sizeX; x++) {
+            for (int y = 0; y < sizeY; y++) {
+                Vector3Int position = new Vector3Int(x, y, 0);
+                Debug.Log("SET " + position + " " + transformedMap[x, y]);
+                try {
+                    SetTile(position, transformedMap[x, y]);
+                } catch (System.Exception e) {
+                    Debug.Log(e);
+                }
+            }
+        }
     }
 
     public TILE_TYPE[,] ApplayTileRules() {
         TILE_TYPE[,] transformedMap = new TILE_TYPE[mapSize, mapSize];
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
+                Debug.Log("Before");
+                Debug.Log(map[i,j]);
                 TILE_TYPE type = transformTiles(i, j);
+                Debug.Log(map[i, j]);
+
+                /*
                 if (type == TILE_TYPE.GRASS && Random.Range(0, 100) < 10) {
                     type = TILE_TYPE.STONE;
                 }
+                */
+
                 transformedMap[i, j] = type;
             }
         }
@@ -132,6 +184,7 @@ public class TileController : MonoBehaviour{
                 waterTilemap.SetTile(position, waterTile[8]);
                 break;
             case TILE_TYPE.WATER_C_TR:
+                Debug.Log("WATER_C_TR");
                 waterTilemap.SetTile(position, waterTile[9]);
                 break;
             case TILE_TYPE.WATER_C_BL:

@@ -10,10 +10,10 @@ using System;
 public enum MSG_TYPE {
     AUTH,
     INIT,
+    SET_WORLD,
     CHAT,
     SPAWN,
     MOVE,
-    CHANGE_TRANSFORM,
     ERR
 }
 
@@ -60,8 +60,8 @@ public class Networking : MonoBehaviour {
                     string[] arr = stringMsg.Split(' ');
                     NetworkCharacter.Instance.transform.position = new Vector3(float.Parse(arr[0]), float.Parse(arr[1]), 0);
                     break;
-                case (int)MSG_TYPE.INIT:
-
+                case (int)MSG_TYPE.SET_WORLD:
+                    tileController.initMap(stringMsg);
                     break;
             }
         };
