@@ -7,6 +7,8 @@ using System.Linq;
 public enum TILE_TYPE {
     WATER,
     GRASS,
+    STONE,
+    TREE,
     WATER_L,
     WATER_R,
     WATER_T,
@@ -19,7 +21,6 @@ public enum TILE_TYPE {
     WATER_C_TR,
     WATER_C_BL,
     WATER_C_BR,
-    STONE,
     SAND
 }
 
@@ -42,14 +43,14 @@ public class TileController : MonoBehaviour{
 
     private TILE_TYPE[,] map;
 
-    private void Awake() {
+    private void ÔldAwake() {
         map = new TILE_TYPE[mapSize, mapSize];
         int halfMapSize = mapSize / 2;
         float offset = Random.Range(0f, 100f);
 
         for (int x = 0; x < mapSize; x++) {
             for (int y = 0; y < mapSize; y++) {
-                if(new Vector2Int(x - halfMapSize, y - halfMapSize).magnitude > halfMapSize) {
+                if (new Vector2Int(x - halfMapSize, y - halfMapSize).magnitude > halfMapSize) {
                     map[x, y] = TILE_TYPE.WATER;
                 } else if (Mathf.PerlinNoise(x * noisiness + offset, y * noisiness + offset) < 0.5f) {
                     if (Mathf.PerlinNoise(x * secondNoisiness + offset, y * secondNoisiness + offset) < 0.5f) {
@@ -63,72 +64,89 @@ public class TileController : MonoBehaviour{
             }
         }
 
+        TILE_TYPE[,] transformedMap = ApplayTileRules();
 
+        for (int x = 0; x < mapSize; x++) {
+            for (int y = 0; y < mapSize; y++) {
+                Vector3Int position = new Vector3Int(x - halfMapSize, y - halfMapSize, 0);
+                SetTile(position, transformedMap[x, y]);
+            }
+        }
+    }
+
+    public void initMap(string initString) {
+        int x = int.Parse(initString.Substring(0, initString.IndexOf(" ")) );
+        initString = initString.Substring(initString.IndexOf(" "));
+        int y = int.Parse(initString.Substring(0, initString.IndexOf(" ")));
+        initString = initString.Substring(initString.IndexOf(" "));
+        int xSize = initString.IndexOf(" ");
+    }
+
+    public TILE_TYPE[,] ApplayTileRules() {
         TILE_TYPE[,] transformedMap = new TILE_TYPE[mapSize, mapSize];
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
                 TILE_TYPE type = transformTiles(i, j);
-                if (type == TILE_TYPE.GRASS && Random.Range(0,100) < 10) {
+                if (type == TILE_TYPE.GRASS && Random.Range(0, 100) < 10) {
                     type = TILE_TYPE.STONE;
                 }
                 transformedMap[i, j] = type;
             }
         }
 
-        for (int x = 0; x < mapSize; x++) {
-            for (int y = 0; y < mapSize; y++) {
-                Vector3Int position = new Vector3Int(x - halfMapSize, y - halfMapSize, 0);
-                switch (transformedMap[x, y]) {
-                    case TILE_TYPE.WATER:
-                        break;
-                    case TILE_TYPE.GRASS:
-                        groundTilemap.SetTile(position, getRdmGrass());
-                        break;
-                    case TILE_TYPE.WATER_L:
-                        waterTilemap.SetTile(position, waterTile[0]);
-                        break;
-                    case TILE_TYPE.WATER_R:
-                        waterTilemap.SetTile(position, waterTile[1]);
-                        break;
-                    case TILE_TYPE.WATER_T:
-                        waterTilemap.SetTile(position, waterTile[2]);
-                        break;
-                    case TILE_TYPE.WATER_B:
-                        waterTilemap.SetTile(position, waterTile[3]);
-                        break;
-                    case TILE_TYPE.WATER_TL:
-                        waterTilemap.SetTile(position, waterTile[4]);
-                        break;
-                    case TILE_TYPE.WATER_TR:
-                        waterTilemap.SetTile(position, waterTile[5]);
-                        break;
-                    case TILE_TYPE.WATER_BL:
-                        waterTilemap.SetTile(position, waterTile[6]);
-                        break;
-                    case TILE_TYPE.WATER_BR:
-                        waterTilemap.SetTile(position, waterTile[7]);
-                        break;
-                    case TILE_TYPE.WATER_C_TL:
-                        waterTilemap.SetTile(position, waterTile[8]);
-                        break;
-                    case TILE_TYPE.WATER_C_TR:
-                        waterTilemap.SetTile(position, waterTile[9]);
-                        break;
-                    case TILE_TYPE.WATER_C_BL:
-                        waterTilemap.SetTile(position, waterTile[10]);
-                        break;
-                    case TILE_TYPE.WATER_C_BR:
-                        waterTilemap.SetTile(position, waterTile[11]);
-                        break;
-                    case TILE_TYPE.SAND:
-                        waterTilemap.SetTile(position, sandTile[0]);
-                        break;
-                    case TILE_TYPE.STONE:
-                        groundTilemap.SetTile(position, grassTile[14]);
-                        resourcesTilemap.SetTile(position, resourceTile[0]);
-                        break;
-                }
-            }
+        return transformedMap;
+    }
+
+    public void SetTile(Vector3Int position, TILE_TYPE type) {
+        switch (type) {
+            case TILE_TYPE.WATER:
+                break;
+            case TILE_TYPE.GRASS:
+                groundTilemap.SetTile(position, getRdmGrass());
+                break;
+            case TILE_TYPE.WATER_L:
+                waterTilemap.SetTile(position, waterTile[0]);
+                break;
+            case TILE_TYPE.WATER_R:
+                waterTilemap.SetTile(position, waterTile[1]);
+                break;
+            case TILE_TYPE.WATER_T:
+                waterTilemap.SetTile(position, waterTile[2]);
+                break;
+            case TILE_TYPE.WATER_B:
+                waterTilemap.SetTile(position, waterTile[3]);
+                break;
+            case TILE_TYPE.WATER_TL:
+                waterTilemap.SetTile(position, waterTile[4]);
+                break;
+            case TILE_TYPE.WATER_TR:
+                waterTilemap.SetTile(position, waterTile[5]);
+                break;
+            case TILE_TYPE.WATER_BL:
+                waterTilemap.SetTile(position, waterTile[6]);
+                break;
+            case TILE_TYPE.WATER_BR:
+                waterTilemap.SetTile(position, waterTile[7]);
+                break;
+            case TILE_TYPE.WATER_C_TL:
+                waterTilemap.SetTile(position, waterTile[8]);
+                break;
+            case TILE_TYPE.WATER_C_TR:
+                waterTilemap.SetTile(position, waterTile[9]);
+                break;
+            case TILE_TYPE.WATER_C_BL:
+                waterTilemap.SetTile(position, waterTile[10]);
+                break;
+            case TILE_TYPE.WATER_C_BR:
+                waterTilemap.SetTile(position, waterTile[11]);
+                break;
+            case TILE_TYPE.SAND:
+                waterTilemap.SetTile(position, sandTile[0]);
+                break;
+            case TILE_TYPE.STONE:
+                groundTilemap.SetTile(position, grassTile[14]);
+                resourcesTilemap.SetTile(position, resourceTile[0]);
+                break;
         }
     }
 

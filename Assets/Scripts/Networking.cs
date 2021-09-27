@@ -21,6 +21,8 @@ public class Networking : MonoBehaviour {
 
     static Networking Instance;
 
+    [SerializeField] private TileController tileController;
+
     [SerializeField] private string protocol = "ws";
     [SerializeField] private string ip = "localhost";
     [SerializeField] private string port = "4242";
@@ -47,6 +49,7 @@ public class Networking : MonoBehaviour {
             int msgType = (int)stringMsg[0];
             stringMsg = stringMsg.Substring(1);
 
+            Debug.Log(msgType + ". MSG " + stringMsg.Length + " - " + stringMsg + "!");
 
             // TODO switch over all MSG_TYPES
             switch (msgType) {
@@ -56,6 +59,9 @@ public class Networking : MonoBehaviour {
                 case (int)MSG_TYPE.MOVE:
                     string[] arr = stringMsg.Split(' ');
                     NetworkCharacter.Instance.transform.position = new Vector3(float.Parse(arr[0]), float.Parse(arr[1]), 0);
+                    break;
+                case (int)MSG_TYPE.INIT:
+
                     break;
             }
         };
