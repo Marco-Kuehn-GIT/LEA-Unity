@@ -13,6 +13,7 @@ public enum MSG_TYPE {
     SET_WORLD,
     CHAT,
     SPAWN,
+    DESPAWN,
     MOVE,
     ERR
 }
@@ -53,18 +54,20 @@ public class Networking : MonoBehaviour {
             int msgType = (int)stringMsg[0];
             stringMsg = stringMsg.Substring(1);
 
+            string[] arr;
+
             // TODO switch over all MSG_TYPES
             switch (msgType) {
                 case (int)MSG_TYPE.CHAT:
                     UIManager.LogPhrase("msg", Enum.GetName(typeof(MSG_TYPE), msgType), stringMsg);
                     break;
                 case (int)MSG_TYPE.MOVE:
-                    string[] arr = stringMsg.Split(' ');
+                    arr = stringMsg.Split(' ');
                     NetworkCharacter networkCharacter;
                     Debug.Log("MOVE" + stringMsg);
                     if (networkCharacters.TryGetValue(arr[0], out networkCharacter)) {
                         Debug.Log("MOVE2");
-                        networkCharacter.Moove(float.Parse(arr[0]), float.Parse(arr[1]));
+                        networkCharacter.Move(float.Parse(arr[1]), float.Parse(arr[2]));
                     }
                     break;
                 case (int)MSG_TYPE.SET_WORLD:
@@ -72,9 +75,18 @@ public class Networking : MonoBehaviour {
                     break;
                 case (int)MSG_TYPE.SPAWN:
                     Debug.Log("SPAWN" + stringMsg);
-                    String[] data = stringMsg.Split(' ');
+                    arr = stringMsg.Split(' ');
                     GameObject obj = Instantiate(networkCharacterObj) as GameObject;
-                    networkCharacters.Add(data[0], obj.GetComponent<NetworkCharacter>());
+                    networkCharacters.Add(arr[0], obj.GetComponent<NetworkCharacter>());
+                    break;
+                case (int)MSG_TYPE.DESPAWN:
+                    Debug.Log("DESPAWN" + stringMsg);
+                    arr = stringMsg.Split(' ');
+                    NetworkCharacter networkCharacter1;
+                    if (networkCharacters.TryGetValue(arr[0], out networkCharacter1)) {
+                        networkCharacters.Remove(arr[0]);
+                        Destroy(networkCharacter1.gameObject);
+                    }
                     break;
             }
         };
