@@ -13,9 +13,6 @@ public class UIManager : MonoBehaviour{
     [SerializeField] private Text debugText;
     [SerializeField] private CanvasGroup debugConsole;
 
-    private string debugOpenCode = "bmarvinb";
-    private int curDebugOpenCodePos = 0;
-
     private void Awake() {
         Instance = this;
     }
