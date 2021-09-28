@@ -293,7 +293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126853269}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15, y: 10, z: 0}
+  m_LocalPosition: {x: 38, y: 18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 786270578}
@@ -642,7 +642,17 @@ Tilemap:
   m_GameObject: {fileID: 542203318}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: 13, y: 11, z: 0}
+  - first: {x: 42, y: 17, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 42, y: 20, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 20
@@ -692,8 +702,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: eb40191e8210621418481d7a191bc792, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: a45a367f47a846a43b4d54745b4426f8, type: 2}
   m_TileSpriteArray:
@@ -735,12 +745,12 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 71619f8d89854d84c8600d4af70cf70f, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 47bcc0772023db14185591049ec200c3, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data:
       e00: 1
       e01: 0
@@ -759,7 +769,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -1524,7 +1534,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3333334, y: 1}
+    m_SensorSize: {x: 1.8597121, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1811,6 +1821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb8128a1a79970468c0976b51d82ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
   debugText: {fileID: 1067726219}
   debugConsole: {fileID: 1169480897}
 --- !u!1 &1691109289
@@ -2180,7 +2191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007479232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.5, y: 11, z: 0}
+  m_LocalPosition: {x: 42.5, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
