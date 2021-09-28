@@ -1129,6 +1129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 786270578}
   - component: {fileID: 786270579}
+  - component: {fileID: 786270580}
   m_Layer: 0
   m_Name: character1_4
   m_TagString: Untagged
@@ -1202,6 +1203,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &786270580
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786270577}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aca36d338b890c646bfc98a7aea10b47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &950080865
 GameObject:
   m_ObjectHideFlags: 3
@@ -1504,7 +1524,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7791411, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1676,7 +1696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileController: {fileID: 432655424}
   protocol: ws
-  ip: localhost
+  ip: lea.ddnss.de
   port: 4242
 --- !u!1 &1680751961
 GameObject:
