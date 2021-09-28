@@ -49,8 +49,6 @@ public class Networking : MonoBehaviour {
             int msgType = (int)stringMsg[0];
             stringMsg = stringMsg.Substring(1);
 
-            Debug.Log(msgType + ". MSG " + stringMsg.Length + " - " + stringMsg + "!");
-
             // TODO switch over all MSG_TYPES
             switch (msgType) {
                 case (int)MSG_TYPE.CHAT:
