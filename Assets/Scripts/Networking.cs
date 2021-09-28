@@ -56,7 +56,7 @@ public class Networking : MonoBehaviour {
                     break;
                 case (int)MSG_TYPE.MOVE:
                     string[] arr = stringMsg.Split(' ');
-                    NetworkCharacter.Instance.transform.position = new Vector3(float.Parse(arr[0]), float.Parse(arr[1]), 0);
+                    NetworkCharacter.Instance.Moove(float.Parse(arr[0]), float.Parse(arr[1]));
                     break;
                 case (int)MSG_TYPE.SET_WORLD:
                     tileController.initMap(stringMsg);
