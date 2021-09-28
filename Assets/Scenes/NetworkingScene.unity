@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0c42c211c807c4d9779a9d93442169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &432655421
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +415,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4a5178f3ec122414cb41bedfadd9b504, type: 2}
   resourceTile:
   - {fileID: 11400000, guid: eb40191e8210621418481d7a191bc792, type: 2}
+  - {fileID: 11400000, guid: a45a367f47a846a43b4d54745b4426f8, type: 2}
   mapSize: 200
   noisiness: 0.02
   secondNoisiness: 0.05
@@ -1534,7 +1536,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8597121, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

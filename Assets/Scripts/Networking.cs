@@ -21,6 +21,7 @@ public class Networking : MonoBehaviour {
 
     static Networking Instance;
 
+    [SerializeField] private GameObject networkCharacterObj;
     [SerializeField] private TileController tileController;
 
     [SerializeField] private string protocol = "ws";
@@ -28,6 +29,8 @@ public class Networking : MonoBehaviour {
     [SerializeField] private string port = "4242";
 
     private WebSocket ws;
+
+    public Dictionary<String, NetworkCharacter> networkCharacters = new Dictionary<string, NetworkCharacter>();
 
     private void Awake() {
         Instance = this;
@@ -41,6 +44,7 @@ public class Networking : MonoBehaviour {
         // Add OnOpen event listener
         ws.OnOpen += () => {
             UIManager.LogPhrase("connected", ws.GetState().ToString());
+            SendMsg(MSG_TYPE.AUTH, "admin admin");
         };
 
         // Add OnMessage event listener
@@ -56,10 +60,21 @@ public class Networking : MonoBehaviour {
                     break;
                 case (int)MSG_TYPE.MOVE:
                     string[] arr = stringMsg.Split(' ');
-                    NetworkCharacter.Instance.Moove(float.Parse(arr[0]), float.Parse(arr[1]));
+                    NetworkCharacter networkCharacter;
+                    Debug.Log("MOVE" + stringMsg);
+                    if (networkCharacters.TryGetValue(arr[0], out networkCharacter)) {
+                        Debug.Log("MOVE2");
+                        networkCharacter.Moove(float.Parse(arr[0]), float.Parse(arr[1]));
+                    }
                     break;
                 case (int)MSG_TYPE.SET_WORLD:
                     tileController.initMap(stringMsg);
+                    break;
+                case (int)MSG_TYPE.SPAWN:
+                    Debug.Log("SPAWN" + stringMsg);
+                    String[] data = stringMsg.Split(' ');
+                    GameObject obj = Instantiate(networkCharacterObj) as GameObject;
+                    networkCharacters.Add(data[0], obj.GetComponent<NetworkCharacter>());
                     break;
             }
         };

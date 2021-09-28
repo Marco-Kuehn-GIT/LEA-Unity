@@ -95,39 +95,20 @@ public class TileController : MonoBehaviour{
 
             }
         } catch (System.Exception e) {
-            Debug.Log("test " + test);
             Debug.Log(e);
         }
 
-        string outStr = "->";
-        for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; j++) {
-                outStr += resourceMap[i, j] + ",";
-            }
-            outStr += "\n";
-        }
-        Debug.Log(outStr);
             
 
         mapSize = sizeX;
         int halfMapSize = mapSize / 2;
 
-        Debug.Log("transform Map");
         TILE_TYPE[,] transformedMap = ApplayTileRules();
 
-        outStr = "";
-        for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; j++) {
-                outStr += transformedMap[i, j] + ",";
-            }
-            outStr += "\n";
-        }
-        Debug.Log(outStr);
 
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {
                 Vector3Int position = new Vector3Int(x, y, 0);
-                Debug.Log("SET " + position + " " + transformedMap[x, y]);
                 try {
                     SetTile(position, transformedMap[x, y]);
                     SetTile(position, resourceMap[x, y]);
@@ -199,12 +180,14 @@ public class TileController : MonoBehaviour{
             case TILE_TYPE.STONE:
                 resourcesTilemap.SetTile(position, resourceTile[0]);
                 break;
+            case TILE_TYPE.TREE:
+                resourcesTilemap.SetTile(position, resourceTile[1]);
+                break;
         }
     }
 
     public void setTile(int x, int y) {
         Vector3Int position = new Vector3Int(x, y, 0);
-        Debug.Log("GetTile " + resourcesTilemap.GetTile(position));
         if (resourcesTilemap.GetTile(position)) {
             resourcesTilemap.SetTile(position, null);
         } else {
