@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour{
 
     [SerializeField] private float movementSpeed = 1f;
 
+    [SerializeField] private List<TILE_TYPE> inventory;
+
+    public int curInventorySpace = 0;
+
     private Rigidbody2D rgBody;
 
     private Vector2 movingDir;
@@ -38,7 +42,7 @@ public class PlayerController : MonoBehaviour{
                 y--;
             }
 
-            tileController.setTile(x, y);
+            Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, (int)inventory[curInventorySpace] + " " + x + " " + y);
         }
     }
 

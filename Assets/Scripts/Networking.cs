@@ -11,6 +11,9 @@ public enum MSG_TYPE {
     AUTH,
     INIT,
     SET_WORLD,
+    ADD_RESOURCE,
+    REMOVE_RESOURCE,
+    HIT_RESOURCE,
     CHAT,
     SPAWN,
     DESPAWN,
@@ -64,15 +67,26 @@ public class Networking : MonoBehaviour {
                 case (int)MSG_TYPE.MOVE:
                     arr = stringMsg.Split(' ');
                     NetworkCharacter networkCharacter;
-                    Debug.Log("MOVE" + stringMsg);
                     if (networkCharacters.TryGetValue(arr[0], out networkCharacter)) {
-                        Debug.Log("MOVE2");
                         networkCharacter.Move(float.Parse(arr[1]), float.Parse(arr[2]));
                     }
                     break;
                 case (int)MSG_TYPE.SET_WORLD:
                     tileController.initMap(stringMsg);
                     break;
+                case (int)MSG_TYPE.ADD_RESOURCE:
+                    arr = stringMsg.Split(' ');
+                    tileController.SetTile(new Vector3Int(int.Parse(arr[1]), int.Parse(arr[2]), 0), (TILE_TYPE)int.Parse(arr[0]));
+                    break;
+                case (int)MSG_TYPE.HIT_RESOURCE:
+                
+                    break;
+                case (int)MSG_TYPE.REMOVE_RESOURCE:
+                    arr = stringMsg.Split(' ');
+                    tileController.SetTile(new Vector3Int(int.Parse(arr[0]), int.Parse(arr[1]), 0), TILE_TYPE.WATER, true);
+                    break;
+
+
                 case (int)MSG_TYPE.SPAWN:
                     Debug.Log("SPAWN" + stringMsg);
                     arr = stringMsg.Split(' ');

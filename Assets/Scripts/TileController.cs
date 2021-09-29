@@ -131,9 +131,12 @@ public class TileController : MonoBehaviour{
         return transformedMap;
     }
 
-    public void SetTile(Vector3Int position, TILE_TYPE type) {
+    public void SetTile(Vector3Int position, TILE_TYPE type, bool isGameActive = false) {
         switch (type) {
             case TILE_TYPE.WATER:
+                if(isGameActive){
+                    resourcesTilemap.SetTile(position, null);
+                }
                 break;
             case TILE_TYPE.GRASS:
                 groundTilemap.SetTile(position, getRdmGrass());
@@ -186,13 +189,18 @@ public class TileController : MonoBehaviour{
         }
     }
 
-    public void setTile(int x, int y) {
+    public bool setResource(int x, int y, TILE_TYPE type) {
         Vector3Int position = new Vector3Int(x, y, 0);
         if (resourcesTilemap.GetTile(position)) {
-            resourcesTilemap.SetTile(position, null);
+            if(type == TILE_TYPE.WATER) {
+                resourcesTilemap.SetTile(position, null);
+            } else {
+                return false;
+            }
         } else {
             resourcesTilemap.SetTile(position, resourceTile[0]);
         }
+        return true;
     }
 
     private TILE_TYPE transformTiles(int x, int y) {

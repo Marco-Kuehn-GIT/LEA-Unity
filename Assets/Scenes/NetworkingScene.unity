@@ -1923,6 +1923,8 @@ MonoBehaviour:
   cam: {fileID: 519420031}
   animator: {fileID: 1334372206}
   movementSpeed: 5
+  inventory: 0200000000000000
+  curInventorySpace: 0
 --- !u!1 &1852117268
 GameObject:
   m_ObjectHideFlags: 0
