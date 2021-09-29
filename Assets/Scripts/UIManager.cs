@@ -8,11 +8,10 @@ public class UIManager : MonoBehaviour{
 
     public static UIManager Instance;
 
+    [SerializeField] private PlayerController playerController;
+
     [SerializeField] private Text debugText;
     [SerializeField] private CanvasGroup debugConsole;
-
-    private string debugOpenCode = "bmarvinb";
-    private int curDebugOpenCodePos = 0;
 
     private void Awake() {
         Instance = this;
@@ -47,6 +46,17 @@ public class UIManager : MonoBehaviour{
     }
 
     public void SubmitDebugInput(InputField inputField) {
+        if (inputField.text.StartsWith("/")) {
+            String[] cmd = inputField.text.Substring(1).Split(' ');
+            Debug.Log("cmd " + cmd[0]);
+            switch (cmd[0]) {
+                case "tp":
+                    playerController.transform.position = new Vector3(int.Parse(cmd[1]), int.Parse(cmd[2]), 0);
+                    break;
+            }
+
+            return;
+        }
         LogMsg("Send: " + inputField.text);
         Networking.SendMsg(MSG_TYPE.CHAT, inputField.text);
         inputField.text = "";
