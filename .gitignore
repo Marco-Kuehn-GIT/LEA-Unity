@@ -12,10 +12,11 @@
 /[Pp]rojectSettings/
 /[Uu]serSettings/
 /[Pp]ackages/
-/[Aa]ssets/[Ss]prites/[Aa]ssets/
+/[Aa]ssets/[Ss]prites/[Aa]ssets/*.png
+/[Aa]ssets/[Ss]prites/[Aa]ssets/*/*.png
 
 /.vsconfig
-/[Aa]ssets/[Mm]usic/
+/[Aa]ssets/[Mm]usic/*.mp3
 /[Aa]ssets/NuGet.config
 /[Aa]ssets/packages.config
 /[Aa]ssets/NuGet.config.meta

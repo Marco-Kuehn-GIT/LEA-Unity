@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &494189301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1919,6 +1919,7 @@ MonoBehaviour:
   - {fileID: 776894321359918150, guid: 2de097e54e4dfb84d8fb4c5d923ed1a3, type: 3}
   - {fileID: 776894321359918150, guid: 93274d354597fd845b5bd8767e56c33b, type: 3}
   tileController: {fileID: 432655424}
+  playerController: {fileID: 0}
   loadingCanvas: {fileID: 494189300}
   protocol: ws
   ip: lea.ddnss.de
@@ -2327,7 +2328,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c759e1951a7029a44af7af293bc22eb5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5492a899dabcd8a4da4c03b76a66bb45, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2504,7 +2505,10 @@ MonoBehaviour:
   animator: {fileID: 1334372206}
   movementSpeed: 5
   skin:
-  - {fileID: 1334372206}
+  - {fileID: 1334372205}
+  - {fileID: 909485830}
+  - {fileID: 1856059257}
+  - {fileID: 1001516488}
   inventory: 000000000200000003000000
   curInventorySpace: 0
 --- !u!1 &1852117268

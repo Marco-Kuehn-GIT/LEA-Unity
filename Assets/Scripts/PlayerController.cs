@@ -84,8 +84,15 @@ public class PlayerController : MonoBehaviour{
     }
 
     public void SetSkin(int nr) {
-        if (nr > skin.Length) skin = 0;
-        skin[nr].SetActive(true);
-        animator = skin[nr].GetComponent<Animator>();
-    };
+        if (nr > skin.Length) nr = 0;
+        Debug.Log("activate skin " + nr + " " + skin.Length);
+        try {
+            Debug.Log(skin[nr]);
+            skin[nr].SetActive(true);
+            animator = skin[nr].GetComponent<Animator>();
+        } catch (System.Exception e) {
+            Debug.Log(e);
+            Debug.Log(e.StackTrace);
+        }
+    }
 }

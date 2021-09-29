@@ -66,7 +66,7 @@ public class Networking : MonoBehaviour {
             switch (msgType) {
                 case (int)MSG_TYPE.INIT:
                     arr = stringMsg.Split(' ');
-                    Debug.Log("Set skin " + arr[0])
+                    Debug.Log("Set skin " + arr[0]);
                     playerController.SetSkin(int.Parse(arr[0]));
                     break;
                 case (int)MSG_TYPE.CHAT:

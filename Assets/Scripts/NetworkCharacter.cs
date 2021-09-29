@@ -9,10 +9,6 @@ public class NetworkCharacter : MonoBehaviour{
     [SerializeField] private Animator animator;
     private float movingThreshold = 0.01f;
 
-    private void Awake() {
-        Instance = this;
-    }
-
     public void Move(float x, float y) {
         Vector2 posBefore = transform.position;
         transform.position = new Vector2(x, y);
