@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 776894320979426720}
   - component: {fileID: 776894320979426727}
   m_Layer: 0
-  m_Name: character1_4
+  m_Name: character2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 776894321359918149}
   - component: {fileID: 776894321359918148}
   m_Layer: 0
-  m_Name: Player (NetObj)
+  m_Name: Player2 (NetObj)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
