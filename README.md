@@ -2,10 +2,16 @@
 
 ## Installation
 1. Create a new Unity Project in the git-folder
+
+2. Clear Assests folder 
+   
 2. git init
+   
 3. git remote add origin \<link\>
-4. git push --set-upstream origin master
-5. 
+   
+4. git pull origin master
+   
+5. git push --set-upstream origin master
 
 6. Install NuGet for Unity: https://github.com/GlitchEnzo/NuGetForUnity/releases
 
