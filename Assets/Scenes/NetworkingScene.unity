@@ -1560,7 +1560,7 @@ MonoBehaviour:
   networkCharacterObj: {fileID: 776894321359918150, guid: 9c05eb6187526eb42bd53c0956ff3314, type: 3}
   tileController: {fileID: 432655424}
   protocol: ws
-  ip: localhost
+  ip: lea.ddnss.de
   port: 4242
 --- !u!1 &1680751961
 GameObject:
