@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &494189301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1712,7 +1712,7 @@ MonoBehaviour:
   - {fileID: 776894321359918150, guid: e64e5b656e2a6a545904d1cdcf5eaa5c, type: 3}
   - {fileID: 776894321359918150, guid: 2de097e54e4dfb84d8fb4c5d923ed1a3, type: 3}
   - {fileID: 776894321359918150, guid: 93274d354597fd845b5bd8767e56c33b, type: 3}
-  - {fileID: 776894321359918150, guid: e64e5b656e2a6a545904d1cdcf5eaa5c, type: 3}
+  - {fileID: 776894321359918150, guid: 86952c2b680250d41a4b4aee445f7711, type: 3}
   tileController: {fileID: 432655424}
   loadingCanvas: {fileID: 494189300}
   protocol: ws
