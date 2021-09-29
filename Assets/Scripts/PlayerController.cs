@@ -52,12 +52,13 @@ public class PlayerController : MonoBehaviour{
     }
 
     void FixedUpdate() {
-        setAnimation();
+        if (setAnimation()) {
+            Networking.SendMsg(MSG_TYPE.MOVE, transform.position.x + " " + transform.position.y);
+        }
         rgBody.MovePosition(rgBody.position + movingDir.normalized * movementSpeed * Time.fixedDeltaTime);
-        Networking.SendMsg(MSG_TYPE.MOVE, transform.position.x + " " + transform.position.y);
     }
 
-    private void setAnimation() {
+    private bool setAnimation() {
         if (Mathf.Abs(movingDir.x) > Mathf.Abs(movingDir.y)) {
             if (movingDir.x > 0) {
                 animator.SetInteger("WalkDir", 2);
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour{
                 animator.SetInteger("WalkDir", 4);
             } else {
                 animator.SetInteger("WalkDir", 0);
+                return false;
             }
         } else {
             if (movingDir.y > 0) {
@@ -73,7 +75,9 @@ public class PlayerController : MonoBehaviour{
                 animator.SetInteger("WalkDir", 3);
             } else {
                 animator.SetInteger("WalkDir", 0);
+                return false;
             }
         }
+        return true;
     }
 }

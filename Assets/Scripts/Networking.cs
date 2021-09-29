@@ -25,7 +25,7 @@ public class Networking : MonoBehaviour {
 
     static Networking Instance;
 
-    [SerializeField] private GameObject networkCharacterObj;
+    [SerializeField] private GameObject[] networkCharacterObj;
     [SerializeField] private TileController tileController;
 
     [SerializeField] private GameObject loadingCanvas;
@@ -63,6 +63,10 @@ public class Networking : MonoBehaviour {
 
             // TODO switch over all MSG_TYPES
             switch (msgType) {
+                case (int)MSG_TYPE.INIT:
+                    arr = stringMsg.Split(' ');
+                    Debug.Log("Set skin " + arr[0]);
+                    break;
                 case (int)MSG_TYPE.CHAT:
                     UIManager.LogPhrase("msg", Enum.GetName(typeof(MSG_TYPE), msgType), stringMsg);
                     break;
@@ -90,11 +94,10 @@ public class Networking : MonoBehaviour {
                     tileController.SetTile(new Vector3Int(int.Parse(arr[0]), int.Parse(arr[1]), 0), TILE_TYPE.WATER, true);
                     break;
 
-
                 case (int)MSG_TYPE.SPAWN:
                     Debug.Log("SPAWN" + stringMsg);
                     arr = stringMsg.Split(' ');
-                    GameObject obj = Instantiate(networkCharacterObj) as GameObject;
+                    GameObject obj = Instantiate(networkCharacterObj[int.Parse(arr[1])]) as GameObject;
                     networkCharacters.Add(arr[0], obj.GetComponent<NetworkCharacter>());
                     break;
                 case (int)MSG_TYPE.DESPAWN:

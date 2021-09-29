@@ -7,6 +7,7 @@ public class NetworkCharacter : MonoBehaviour{
     public static NetworkCharacter Instance;
 
     [SerializeField] private Animator animator;
+    private float movingThreshold = 0.01f;
 
     private void Awake() {
         Instance = this;
@@ -19,10 +20,10 @@ public class NetworkCharacter : MonoBehaviour{
         Vector2 movingDir = (Vector2)transform.position - posBefore;
 
         if (Mathf.Abs(movingDir.x) > Mathf.Abs(movingDir.y)) {
-            if (movingDir.x > 0) {
+            if (movingDir.x > movingThreshold) {
                 animator.SetInteger("WalkDir", 2);
             }
-            else if (movingDir.x < 0) {
+            else if (movingDir.x < -movingThreshold) {
                 animator.SetInteger("WalkDir", 4);
             }
             else {
@@ -30,10 +31,10 @@ public class NetworkCharacter : MonoBehaviour{
             }
         }
         else {
-            if (movingDir.y > 0) {
+            if (movingDir.y > movingThreshold) {
                 animator.SetInteger("WalkDir", 1);
             }
-            else if (movingDir.y < 0) {
+            else if (movingDir.y < -movingThreshold) {
                 animator.SetInteger("WalkDir", 3);
             }
             else {
