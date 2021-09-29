@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour{
 
     [SerializeField] private float movementSpeed = 1f;
 
-    [SerializeField] private GameObject[] skin;
+    public GameObject[] skin;
 
     [SerializeField] private List<TILE_TYPE> inventory;
 

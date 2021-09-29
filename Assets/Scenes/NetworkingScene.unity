@@ -1202,7 +1202,7 @@ Animator:
   m_GameObject: {fileID: 909485830}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7df74a3e54c277947a34f318d6387467, type: 2}
+  m_Controller: {fileID: 9100000, guid: aca36d338b890c646bfc98a7aea10b47, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1392,7 +1392,7 @@ Animator:
   m_GameObject: {fileID: 1001516488}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7df74a3e54c277947a34f318d6387467, type: 2}
+  m_Controller: {fileID: 9100000, guid: f7a63ea5926d70d44ba18e854720ac83, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1919,7 +1919,7 @@ MonoBehaviour:
   - {fileID: 776894321359918150, guid: 2de097e54e4dfb84d8fb4c5d923ed1a3, type: 3}
   - {fileID: 776894321359918150, guid: 93274d354597fd845b5bd8767e56c33b, type: 3}
   tileController: {fileID: 432655424}
-  playerController: {fileID: 0}
+  playerController: {fileID: 1794150434}
   loadingCanvas: {fileID: 494189300}
   protocol: ws
   ip: lea.ddnss.de
@@ -2598,7 +2598,7 @@ Animator:
   m_GameObject: {fileID: 1856059257}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7df74a3e54c277947a34f318d6387467, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4052695ae9475d3469cc02f3c8df7ea2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
