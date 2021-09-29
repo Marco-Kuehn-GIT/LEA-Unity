@@ -13,7 +13,8 @@ public class NetworkCharacter : MonoBehaviour{
     }
 
 
-    public void Moove(float x, float y) {
+    public void Move(float x, float y) {
+        Debug.Log("move " + x + " " + y);
         Vector2 posBefore = transform.position;
         transform.position = new Vector2(x, y);
         Vector2 movingDir = (Vector2)transform.position - posBefore;
