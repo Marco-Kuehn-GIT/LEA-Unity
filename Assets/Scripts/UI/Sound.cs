@@ -30,6 +30,7 @@ public class Sound : MonoBehaviour
     }
 
     private void Load() {
+        AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
         volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
     }
 

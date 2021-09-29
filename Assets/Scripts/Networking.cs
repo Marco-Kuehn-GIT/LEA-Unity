@@ -28,6 +28,8 @@ public class Networking : MonoBehaviour {
     [SerializeField] private GameObject networkCharacterObj;
     [SerializeField] private TileController tileController;
 
+    [SerializeField] private GameObject loadingCanvas;
+
     [SerializeField] private string protocol = "ws";
     [SerializeField] private string ip = "localhost";
     [SerializeField] private string port = "4242";
@@ -73,6 +75,8 @@ public class Networking : MonoBehaviour {
                     break;
                 case (int)MSG_TYPE.SET_WORLD:
                     tileController.initMap(stringMsg);
+                    // Deactivte Loading Canvas
+                    loadingCanvas.SetActive(false);
                     break;
                 case (int)MSG_TYPE.ADD_RESOURCE:
                     arr = stringMsg.Split(' ');
