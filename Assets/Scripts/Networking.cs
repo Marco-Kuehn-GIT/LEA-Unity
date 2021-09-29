@@ -27,6 +27,7 @@ public class Networking : MonoBehaviour {
 
     [SerializeField] private GameObject[] networkCharacterObj;
     [SerializeField] private TileController tileController;
+    [SerializeField] private PlayerController playerController;
 
     [SerializeField] private GameObject loadingCanvas;
 
@@ -65,7 +66,8 @@ public class Networking : MonoBehaviour {
             switch (msgType) {
                 case (int)MSG_TYPE.INIT:
                     arr = stringMsg.Split(' ');
-                    Debug.Log("Set skin " + arr[0]);
+                    Debug.Log("Set skin " + arr[0])
+                    playerController.SetSkin(int.Parse(arr[0]));
                     break;
                 case (int)MSG_TYPE.CHAT:
                     UIManager.LogPhrase("msg", Enum.GetName(typeof(MSG_TYPE), msgType), stringMsg);

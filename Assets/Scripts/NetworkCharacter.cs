@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NetworkCharacter : MonoBehaviour{
 
-    public static NetworkCharacter Instance;
+    public string name = "Player_xy";
 
     [SerializeField] private Animator animator;
     private float movingThreshold = 0.01f;

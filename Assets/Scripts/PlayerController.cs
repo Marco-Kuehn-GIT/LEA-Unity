@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour{
 
     [SerializeField] private float movementSpeed = 1f;
 
+    [SerializeField] private GameObject[] skin;
+
     [SerializeField] private List<TILE_TYPE> inventory;
 
     public int curInventorySpace = 0;
@@ -80,4 +82,10 @@ public class PlayerController : MonoBehaviour{
         }
         return true;
     }
+
+    public void SetSkin(int nr) {
+        if (nr > skin.Length) skin = 0;
+        skin[nr].SetActive(true);
+        animator = skin[nr].GetComponent<Animator>();
+    };
 }
