@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour{
         movingDir.x = Input.GetAxisRaw("Horizontal");
         movingDir.y = Input.GetAxisRaw("Vertical");
 
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+            curInventorySpace++;
+            curInventorySpace %= inventory.Count;
+        }
+
         if (Input.GetMouseButtonDown(0)) {
             Vector3 vec = cam.ScreenToWorldPoint(Input.mousePosition);
 

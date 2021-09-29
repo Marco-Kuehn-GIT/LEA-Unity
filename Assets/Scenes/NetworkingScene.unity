@@ -1387,7 +1387,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3333334, y: 1}
+    m_SensorSize: {x: 2.5704918, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1923,7 +1923,7 @@ MonoBehaviour:
   cam: {fileID: 519420031}
   animator: {fileID: 1334372206}
   movementSpeed: 5
-  inventory: 0200000000000000
+  inventory: 000000000200000003000000
   curInventorySpace: 0
 --- !u!1 &1852117268
 GameObject:
