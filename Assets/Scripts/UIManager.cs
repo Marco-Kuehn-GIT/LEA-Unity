@@ -50,15 +50,35 @@ public class UIManager : MonoBehaviour{
             String[] cmd = inputField.text.Substring(1).Split(' ');
             Debug.Log("cmd " + cmd[0]);
             switch (cmd[0]) {
+                case "help":
+                    LogMsg("tp <x> <y>, fill-all <TILE_TYPE>; fill <TILE_TYPE> <x> <y>, info");
+                    break;
                 case "tp":
                     playerController.transform.position = new Vector3(int.Parse(cmd[1]), int.Parse(cmd[2]), 0);
                     break;
+                case "fill-all":
+                    for (int i = 0; i < 100; i++) {
+                        for (int j = 0; j < 100; j++) {
+                            Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, int.Parse(cmd[1]) + " " + i + " " + j);
+                        }
+                    }
+                    break;
+                case "fill":
+                    Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, int.Parse(cmd[1]) + " " + int.Parse(cmd[2]) + " " + int.Parse(cmd[3]));
+                    break;
+                case "info":
+                    string log = "I: ";
+                    foreach (KeyValuePair<string, NetworkCharacter> item in Networking.Instance.NetworkCharacters) {
+                        log += item.Value.name + "(" + item.Key + ") " + item.Value.transform.position;
+                    }
+                    LogMsg(log);
+                    break;
             }
 
+            inputField.text = "";
             return;
         }
         LogMsg("Send: " + inputField.text);
         Networking.SendMsg(MSG_TYPE.CHAT, inputField.text);
-        inputField.text = "";
     }
 }
