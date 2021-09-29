@@ -13,7 +13,6 @@ public class NetworkCharacter : MonoBehaviour{
         Instance = this;
     }
 
-
     public void Move(float x, float y) {
         Vector2 posBefore = transform.position;
         transform.position = new Vector2(x, y);
