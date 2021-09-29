@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &494189301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1463,7 +1463,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.77707, y: 1}
+    m_SensorSize: {x: 1.8579487, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1708,7 +1708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c6087f485a6e040ae81468696b1cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkCharacterObj: {fileID: 776894321359918150, guid: 2de097e54e4dfb84d8fb4c5d923ed1a3, type: 3}
+  networkCharacterObj: {fileID: 776894321359918150, guid: 86952c2b680250d41a4b4aee445f7711, type: 3}
   tileController: {fileID: 432655424}
   loadingCanvas: {fileID: 494189300}
   protocol: ws
