@@ -89,7 +89,9 @@ public class Networking : MonoBehaviour {
                     tileController.SetTile(new Vector3Int(int.Parse(arr[1]), int.Parse(arr[2]), 0), (TILE_TYPE)int.Parse(arr[0]), true);
                     break;
                 case (int)MSG_TYPE.HIT_RESOURCE:
-                
+                    Debug.Log("HIT_RESOURCE " + stringMsg);
+                    arr = stringMsg.Split(' ');
+                    tileController.hitTile(new Vector3Int(int.Parse(arr[0]), int.Parse(arr[1]), 0), int.Parse(arr[2]));
                     break;
                 case (int)MSG_TYPE.REMOVE_RESOURCE:
                     arr = stringMsg.Split(' ');

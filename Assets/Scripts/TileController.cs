@@ -46,6 +46,7 @@ public class TileController : MonoBehaviour{
 
     private TILE_TYPE[,] map;
     private TILE_TYPE[,] resourceMap;
+    private int[,] health;
     private GameObject[,] spritesForMap;
 
     private void OldAwake() {
@@ -91,6 +92,7 @@ public class TileController : MonoBehaviour{
         map = new TILE_TYPE[sizeX, sizeY];
         resourceMap = new TILE_TYPE[sizeX, sizeY];
         spritesForMap = new GameObject[sizeX, sizeY];
+        health = new int[sizeX, sizeY];
 
     string test = "";
         try {
@@ -125,6 +127,14 @@ public class TileController : MonoBehaviour{
         }
     }
 
+    internal void hitTile(Vector3Int pos, int h) {
+        health[pos.x, pos.y] = h;
+        Debug.Log("h: "+ h);
+        if(h <= 1 && resourceMap[pos.x, pos.y] == TILE_TYPE.TREE) {
+            delSprite(pos);
+        }
+    }
+
     public TILE_TYPE[,] ApplayTileRules() {
         TILE_TYPE[,] transformedMap = new TILE_TYPE[mapSize, mapSize];
         for (int i = 0; i < mapSize; i++) {
@@ -140,12 +150,9 @@ public class TileController : MonoBehaviour{
     public void SetTile(Vector3Int position, TILE_TYPE type, bool isGameActive = false) {
         switch (type) {
             case TILE_TYPE.WATER:
-                if(isGameActive){
+                if(isGameActive) {
                     resourcesTilemap.SetTile(position, null);
-                    if(spritesForMap[position.x, position.y] != null) {
-                        Destroy(spritesForMap[position.x, position.y]);
-                        spritesForMap[position.x, position.y] = null;
-                    }
+                    delSprite(position);
                 }
                 break;
             case TILE_TYPE.GRASS:
@@ -199,6 +206,13 @@ public class TileController : MonoBehaviour{
                 spritesForMap[position.x, position.y] = tree.gameObject;
                 resourcesTilemap.SetTile(position, resourceTile[1]);
                 break;
+        }
+    }
+
+    private void delSprite(Vector3Int position) {
+        if (spritesForMap[position.x, position.y] != null) {
+            Destroy(spritesForMap[position.x, position.y]);
+            spritesForMap[position.x, position.y] = null;
         }
     }
 

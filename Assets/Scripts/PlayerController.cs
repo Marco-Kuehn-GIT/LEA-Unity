@@ -51,7 +51,11 @@ public class PlayerController : MonoBehaviour{
                 y--;
             }
 
-            Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, (int)inventory[curInventorySpace] + " " + x + " " + y);
+            if (inventory[curInventorySpace] == TILE_TYPE.WATER) {
+                Networking.SendMsg(MSG_TYPE.HIT_RESOURCE, x + " " + y);
+            } else {
+                Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, (int)inventory[curInventorySpace] + " " + x + " " + y);
+            }
         }
     }
 
