@@ -58,9 +58,9 @@ public class PlayerController : MonoBehaviour{
 
     void FixedUpdate() {
         if (setAnimation()) {
-            Networking.SendMsg(MSG_TYPE.MOVE, transform.position.x + " " + transform.position.y);
             spriteRenderer.sortingOrder = 150 - (int)transform.position.y;
         }
+        Networking.SendMsg(MSG_TYPE.MOVE, transform.position.x + " " + transform.position.y);
         rgBody.MovePosition(rgBody.position + movingDir.normalized * movementSpeed * Time.fixedDeltaTime);
     }
 
