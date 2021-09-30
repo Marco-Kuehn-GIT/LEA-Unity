@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour{
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     [SerializeField] private float movementSpeed = 1f;
+    [SerializeField] private float serverUpdateTime = 1f;
 
     public GameObject[] skin;
 
@@ -25,6 +26,15 @@ public class PlayerController : MonoBehaviour{
 
     private void Awake() {
         rgBody = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start() {
+        InvokeRepeating("UpdatePosition", serverUpdateTime, serverUpdateTime);
+    }
+
+    // Send the position to the server
+    private void UpdatePosition() {
+        Networking.SendMsg(MSG_TYPE.MOVE, transform.position.x + " " + transform.position.y);
     }
 
     private void Update() {
@@ -57,7 +67,6 @@ public class PlayerController : MonoBehaviour{
 
     void FixedUpdate() {
         if (setAnimation()) {
-            Networking.SendMsg(MSG_TYPE.MOVE, transform.position.x + " " + transform.position.y);
             spriteRenderer.sortingOrder = 150 - (int)transform.position.y;
         }
         rgBody.MovePosition(rgBody.position + movingDir.normalized * movementSpeed * Time.fixedDeltaTime);

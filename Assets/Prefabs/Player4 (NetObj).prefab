@@ -147,4 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0c42c211c807c4d9779a9d93442169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Player_xy
   animator: {fileID: 776894320979426727}
+  startPosition: {x: 0, y: 0, z: 0}
+  endPosition: {x: 0, y: 0, z: 0}
+  spriteRenderer: {fileID: 776894320979426720}
