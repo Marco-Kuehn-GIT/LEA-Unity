@@ -194,7 +194,7 @@ public class TileController : MonoBehaviour{
                 resourcesTilemap.SetTile(position, resourceTile[0]);
                 break;
             case TILE_TYPE.TREE:
-                SpriteRenderer tree = Instantiate(treeSprites[Random.Range(0, treeSprites.Length)], new Vector3(position.x + 0.5f, position.y, 0), Quaternion.identity).GetComponent<SpriteRenderer>();
+                SpriteRenderer tree = Instantiate(getRandomTree(), new Vector3(position.x + 0.5f, position.y, 0), Quaternion.identity).GetComponent<SpriteRenderer>();
                 tree.sortingOrder = 150 - position.y;
                 spritesForMap[position.x, position.y] = tree.gameObject;
                 resourcesTilemap.SetTile(position, resourceTile[1]);
@@ -244,5 +244,27 @@ public class TileController : MonoBehaviour{
         }
         
         return grassTile[Random.Range(0, grassTile.Length)];
+    }
+
+    private GameObject getRandomTree() {
+        GameObject tree;
+        int rdmTree = Random.Range(0, 101);
+
+        if(rdmTree <= 50) {
+            tree = treeSprites[0];
+        }
+        else if (rdmTree <= 65) {
+            tree = treeSprites[1];
+        }
+        else if (rdmTree <= 80) {
+            tree = treeSprites[2];
+        }
+        else if (rdmTree <= 95) {
+            tree = treeSprites[3];
+        }
+        else {
+            tree = treeSprites[4];
+        }
+        return tree;
     }
 }
