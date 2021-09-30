@@ -1674,7 +1674,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7791411, y: 1}
+    m_SensorSize: {x: 1.8638232, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2334,11 +2334,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5492a899dabcd8a4da4c03b76a66bb45, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e7e24023ed200134d868176d3fe2e119, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.85
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2509,6 +2509,7 @@ MonoBehaviour:
   tileController: {fileID: 432655424}
   cam: {fileID: 519420031}
   animator: {fileID: 1334372206}
+  spriteRenderer: {fileID: 0}
   movementSpeed: 5
   skin:
   - {fileID: 1334372205}
