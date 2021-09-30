@@ -246,3 +246,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Player_xy
   animator: {fileID: 776894320979426727}
+  audioSource: {fileID: 1826378812125627718}

@@ -7,6 +7,7 @@ public class NetworkCharacter : MonoBehaviour{
     public string name = "Player_xy";
 
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource audioSource;
     private float movingThreshold = 0.01f;
 
     public void Move(float x, float y) {
@@ -17,23 +18,29 @@ public class NetworkCharacter : MonoBehaviour{
         if (Mathf.Abs(movingDir.x) > Mathf.Abs(movingDir.y)) {
             if (movingDir.x > movingThreshold) {
                 animator.SetInteger("WalkDir", 2);
+                audioSource.enabled = true;
             }
             else if (movingDir.x < -movingThreshold) {
                 animator.SetInteger("WalkDir", 4);
+                audioSource.enabled = true;
             }
             else {
                 animator.SetInteger("WalkDir", 0);
+                audioSource.enabled = false;
             }
         }
         else {
             if (movingDir.y > movingThreshold) {
                 animator.SetInteger("WalkDir", 1);
+                audioSource.enabled = true;
             }
             else if (movingDir.y < -movingThreshold) {
                 animator.SetInteger("WalkDir", 3);
+                audioSource.enabled = true;
             }
             else {
                 animator.SetInteger("WalkDir", 0);
+                audioSource.enabled = false;
             }
         }
     }
