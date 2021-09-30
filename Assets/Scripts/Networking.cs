@@ -35,7 +35,7 @@ public class Networking : MonoBehaviour {
     [SerializeField] private string ip = "localhost";
     [SerializeField] private string port = "4242";
 
-    private WebSocket ws;
+    public WebSocket ws;
 
     public Dictionary<String, NetworkCharacter> NetworkCharacters = new Dictionary<string, NetworkCharacter>();
 

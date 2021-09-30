@@ -9,6 +9,7 @@ public class PauseMenue : MonoBehaviour
     // Start is called before the first frame update
     public GameObject Canvas;
     public void PauseQuit() {
+        Networking.Instance.ws.Close();
         SceneManager.LoadScene(0);
     }
 
