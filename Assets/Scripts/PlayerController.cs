@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour{
     [SerializeField] private Camera cam;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private float movementSpeed = 1f;
 
@@ -61,9 +62,9 @@ public class PlayerController : MonoBehaviour{
 
     void FixedUpdate() {
         if (setAnimation()) {
-            Networking.SendMsg(MSG_TYPE.MOVE, transform.position.x + " " + transform.position.y);
             spriteRenderer.sortingOrder = 150 - (int)transform.position.y;
         }
+        Networking.SendMsg(MSG_TYPE.MOVE, transform.position.x + " " + transform.position.y);
         rgBody.MovePosition(rgBody.position + movingDir.normalized * movementSpeed * Time.fixedDeltaTime);
     }
 
@@ -71,10 +72,13 @@ public class PlayerController : MonoBehaviour{
         if (Mathf.Abs(movingDir.x) > Mathf.Abs(movingDir.y)) {
             if (movingDir.x > 0) {
                 animator.SetInteger("WalkDir", 2);
+                audioSource.enabled = true;
             } else if (movingDir.x < 0) {
                 animator.SetInteger("WalkDir", 4);
+                audioSource.enabled = true;
             } else {
                 animator.SetInteger("WalkDir", 0);
+                audioSource.enabled = false;
                 if (!sendNoMsgs) {
                     sendNoMsgs = true;
                     return true;
@@ -84,10 +88,13 @@ public class PlayerController : MonoBehaviour{
         } else {
             if (movingDir.y > 0) {
                 animator.SetInteger("WalkDir", 1);
+                audioSource.enabled = true;
             } else if (movingDir.y < 0) {
                 animator.SetInteger("WalkDir", 3);
+                audioSource.enabled = true;
             } else {
                 animator.SetInteger("WalkDir", 0);
+                audioSource.enabled = false;
                 if (!sendNoMsgs) {
                     sendNoMsgs = true;
                     return true;
@@ -107,6 +114,7 @@ public class PlayerController : MonoBehaviour{
             skin[nr].SetActive(true);
             animator = skin[nr].GetComponent<Animator>();
             spriteRenderer = skin[nr].GetComponent<SpriteRenderer>();
+            audioSource = skin[nr].GetComponent<AudioSource>();
         } catch (System.Exception e) {
             Debug.Log(e);
             Debug.Log(e.StackTrace);

@@ -17,6 +17,7 @@
 
 /.vsconfig
 /[Aa]ssets/[Mm]usic/*.mp3
+/[Aa]ssets/[Ss]ound/*.mp3
 /[Aa]ssets/NuGet.config
 /[Aa]ssets/packages.config
 /[Aa]ssets/NuGet.config.meta
