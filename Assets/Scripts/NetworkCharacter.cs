@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class NetworkCharacter : MonoBehaviour{
 
-    public static NetworkCharacter Instance;
+    public string name = "Player_xy";
 
     [SerializeField] private Animator animator;
     private float movingThreshold = 0.01f;
-
-    private void Awake() {
-        Instance = this;
-    }
 
     public void Move(float x, float y) {
         Vector2 posBefore = transform.position;

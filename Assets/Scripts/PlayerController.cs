@@ -8,8 +8,11 @@ public class PlayerController : MonoBehaviour{
     [SerializeField] private TileController tileController;
     [SerializeField] private Camera cam;
     [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     [SerializeField] private float movementSpeed = 1f;
+
+    public GameObject[] skin;
 
     [SerializeField] private List<TILE_TYPE> inventory;
 
@@ -18,6 +21,7 @@ public class PlayerController : MonoBehaviour{
     private Rigidbody2D rgBody;
 
     private Vector2 movingDir;
+    private bool sendNoMsgs = false;
 
     private void Awake() {
         rgBody = GetComponent<Rigidbody2D>();
@@ -54,6 +58,7 @@ public class PlayerController : MonoBehaviour{
     void FixedUpdate() {
         if (setAnimation()) {
             Networking.SendMsg(MSG_TYPE.MOVE, transform.position.x + " " + transform.position.y);
+            spriteRenderer.sortingOrder = 150 - (int)transform.position.y;
         }
         rgBody.MovePosition(rgBody.position + movingDir.normalized * movementSpeed * Time.fixedDeltaTime);
     }
@@ -66,6 +71,10 @@ public class PlayerController : MonoBehaviour{
                 animator.SetInteger("WalkDir", 4);
             } else {
                 animator.SetInteger("WalkDir", 0);
+                if (!sendNoMsgs) {
+                    sendNoMsgs = true;
+                    return true;
+                }
                 return false;
             }
         } else {
@@ -75,9 +84,28 @@ public class PlayerController : MonoBehaviour{
                 animator.SetInteger("WalkDir", 3);
             } else {
                 animator.SetInteger("WalkDir", 0);
+                if (!sendNoMsgs) {
+                    sendNoMsgs = true;
+                    return true;
+                }
                 return false;
             }
         }
+        sendNoMsgs = false;
         return true;
+    }
+
+    public void SetSkin(int nr) {
+        if (nr > skin.Length) nr = 0;
+        Debug.Log("activate skin " + nr + " " + skin.Length);
+        try {
+            Debug.Log(skin[nr]);
+            skin[nr].SetActive(true);
+            animator = skin[nr].GetComponent<Animator>();
+            spriteRenderer = skin[nr].GetComponent<SpriteRenderer>();
+        } catch (System.Exception e) {
+            Debug.Log(e);
+            Debug.Log(e.StackTrace);
+        }
     }
 }

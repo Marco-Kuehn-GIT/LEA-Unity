@@ -23,10 +23,11 @@ public enum MSG_TYPE {
 
 public class Networking : MonoBehaviour {
 
-    static Networking Instance;
+    public static Networking Instance;
 
     [SerializeField] private GameObject[] networkCharacterObj;
     [SerializeField] private TileController tileController;
+    [SerializeField] private PlayerController playerController;
 
     [SerializeField] private GameObject loadingCanvas;
 
@@ -36,7 +37,7 @@ public class Networking : MonoBehaviour {
 
     private WebSocket ws;
 
-    public Dictionary<String, NetworkCharacter> networkCharacters = new Dictionary<string, NetworkCharacter>();
+    public Dictionary<String, NetworkCharacter> NetworkCharacters = new Dictionary<string, NetworkCharacter>();
 
     private void Awake() {
         Instance = this;
@@ -66,6 +67,7 @@ public class Networking : MonoBehaviour {
                 case (int)MSG_TYPE.INIT:
                     arr = stringMsg.Split(' ');
                     Debug.Log("Set skin " + arr[0]);
+                    playerController.SetSkin(int.Parse(arr[0]));
                     break;
                 case (int)MSG_TYPE.CHAT:
                     UIManager.LogPhrase("msg", Enum.GetName(typeof(MSG_TYPE), msgType), stringMsg);
@@ -73,7 +75,7 @@ public class Networking : MonoBehaviour {
                 case (int)MSG_TYPE.MOVE:
                     arr = stringMsg.Split(' ');
                     NetworkCharacter networkCharacter;
-                    if (networkCharacters.TryGetValue(arr[0], out networkCharacter)) {
+                    if (NetworkCharacters.TryGetValue(arr[0], out networkCharacter)) {
                         networkCharacter.Move(float.Parse(arr[1]), float.Parse(arr[2]));
                     }
                     break;
@@ -98,14 +100,15 @@ public class Networking : MonoBehaviour {
                     Debug.Log("SPAWN" + stringMsg);
                     arr = stringMsg.Split(' ');
                     GameObject obj = Instantiate(networkCharacterObj[int.Parse(arr[1])]) as GameObject;
-                    networkCharacters.Add(arr[0], obj.GetComponent<NetworkCharacter>());
+                    obj.GetComponent<NetworkCharacter>().name = arr[2];
+                    NetworkCharacters.Add(arr[0], obj.GetComponent<NetworkCharacter>());
                     break;
                 case (int)MSG_TYPE.DESPAWN:
                     Debug.Log("DESPAWN" + stringMsg);
                     arr = stringMsg.Split(' ');
                     NetworkCharacter networkCharacter1;
-                    if (networkCharacters.TryGetValue(arr[0], out networkCharacter1)) {
-                        networkCharacters.Remove(arr[0]);
+                    if (NetworkCharacters.TryGetValue(arr[0], out networkCharacter1)) {
+                        NetworkCharacters.Remove(arr[0]);
                         Destroy(networkCharacter1.gameObject);
                     }
                     break;

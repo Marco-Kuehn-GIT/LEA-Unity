@@ -26,6 +26,9 @@ public enum TILE_TYPE {
 
 public class TileController : MonoBehaviour{
 
+    [SerializeField] private GameObject[] treeSprites;
+
+
     [SerializeField] private Tilemap groundTilemap;
     [SerializeField] private Tilemap waterTilemap;
     [SerializeField] private Tilemap resourcesTilemap;
@@ -43,6 +46,7 @@ public class TileController : MonoBehaviour{
 
     private TILE_TYPE[,] map;
     private TILE_TYPE[,] resourceMap;
+    private GameObject[,] spritesForMap;
 
     private void OldAwake() {
         map = new TILE_TYPE[mapSize, mapSize];
@@ -86,7 +90,9 @@ public class TileController : MonoBehaviour{
 
         map = new TILE_TYPE[sizeX, sizeY];
         resourceMap = new TILE_TYPE[sizeX, sizeY];
-        string test = "";
+        spritesForMap = new GameObject[sizeX, sizeY];
+
+    string test = "";
         try {
             for (int i = 0; i < sizeX * sizeY; i++) {
                 map[i / sizeX, i % sizeY] = (TILE_TYPE)((int)initString[i]);
@@ -136,6 +142,10 @@ public class TileController : MonoBehaviour{
             case TILE_TYPE.WATER:
                 if(isGameActive){
                     resourcesTilemap.SetTile(position, null);
+                    if(spritesForMap[position.x, position.y] != null) {
+                        Destroy(spritesForMap[position.x, position.y]);
+                        spritesForMap[position.x, position.y] = null;
+                    }
                 }
                 break;
             case TILE_TYPE.GRASS:
@@ -184,6 +194,9 @@ public class TileController : MonoBehaviour{
                 resourcesTilemap.SetTile(position, resourceTile[0]);
                 break;
             case TILE_TYPE.TREE:
+                SpriteRenderer tree = Instantiate(treeSprites[Random.Range(0, treeSprites.Length)], new Vector3(position.x + 0.5f, position.y, 0), Quaternion.identity).GetComponent<SpriteRenderer>();
+                tree.sortingOrder = 150 - position.y;
+                spritesForMap[position.x, position.y] = tree.gameObject;
                 resourcesTilemap.SetTile(position, resourceTile[1]);
                 break;
         }
