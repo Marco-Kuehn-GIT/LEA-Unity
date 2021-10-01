@@ -410,7 +410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &239475297
 RectTransform:
   m_ObjectHideFlags: 0
@@ -730,9 +730,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1630538310}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 1630538312}
+        m_TargetAssemblyTypeName: LoginScreen, Assembly-CSharp
+        m_MethodName: LoginSave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2192,7 +2192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1032505061
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3081,6 +3081,7 @@ GameObject:
   - component: {fileID: 1630538306}
   - component: {fileID: 1630538310}
   - component: {fileID: 1630538311}
+  - component: {fileID: 1630538312}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3199,6 +3200,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 1043468382}
+--- !u!114 &1630538312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630538305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1620cc9a336a774f81b565050036e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  username: {fileID: 1119100874}
+  password: {fileID: 816141998}
 --- !u!1 &1645977181
 GameObject:
   m_ObjectHideFlags: 0
