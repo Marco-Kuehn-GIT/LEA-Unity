@@ -52,7 +52,7 @@ public class Networking : MonoBehaviour {
         // Add OnOpen event listener
         ws.OnOpen += () => {
             UIManager.LogPhrase("connected", ws.GetState().ToString());
-            SendMsg(MSG_TYPE.AUTH, "admin admin");
+            SendMsg(MSG_TYPE.AUTH, PlayerPrefs.GetString("login"));
         };
 
         // Add OnMessage event listener

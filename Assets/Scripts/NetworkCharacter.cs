@@ -8,12 +8,14 @@ public class NetworkCharacter : MonoBehaviour{
 
     [SerializeField] private Animator animator;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private float movingThreshold = 0.01f;
 
     public void Move(float x, float y) {
         Vector2 posBefore = transform.position;
         transform.position = new Vector2(x, y);
         Vector2 movingDir = (Vector2)transform.position - posBefore;
+        spriteRenderer.sortingOrder = 150 - (int)transform.position.y;
 
         if (Mathf.Abs(movingDir.x) > Mathf.Abs(movingDir.y)) {
             if (movingDir.x > movingThreshold) {
