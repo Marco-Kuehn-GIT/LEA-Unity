@@ -9,6 +9,13 @@ public enum TILE_TYPE {
     GRASS,
     STONE,
     TREE,
+    CHEST,
+    BUSH,
+    CRYSTAL,
+    FIRE,
+    VASE,
+    WOOD_BLOCK,
+    TRASH,
     WATER_L,
     WATER_R,
     WATER_T,
@@ -150,7 +157,7 @@ public class TileController : MonoBehaviour{
     public void SetTile(Vector3Int position, TILE_TYPE type, bool isGameActive = false) {
         switch (type) {
             case TILE_TYPE.WATER:
-                if(isGameActive) {
+                if (isGameActive) {
                     resourcesTilemap.SetTile(position, null);
                     delSprite(position);
                 }
@@ -205,6 +212,27 @@ public class TileController : MonoBehaviour{
                 tree.sortingOrder = 150 - position.y;
                 spritesForMap[position.x, position.y] = tree.gameObject;
                 resourcesTilemap.SetTile(position, resourceTile[1]);
+                break;
+            case TILE_TYPE.CHEST:
+                resourcesTilemap.SetTile(position, resourceTile[2]);
+                break;
+            case TILE_TYPE.BUSH:
+                resourcesTilemap.SetTile(position, resourceTile[3]);
+                break;
+            case TILE_TYPE.CRYSTAL:
+                resourcesTilemap.SetTile(position, resourceTile[4]);
+                break;
+            case TILE_TYPE.FIRE:
+                resourcesTilemap.SetTile(position, resourceTile[5]);
+                break;
+            case TILE_TYPE.VASE:
+                resourcesTilemap.SetTile(position, resourceTile[6]);
+                break;
+            case TILE_TYPE.WOOD_BLOCK:
+                resourcesTilemap.SetTile(position, resourceTile[7]);
+                break;
+            case TILE_TYPE.TRASH:
+                resourcesTilemap.SetTile(position, resourceTile[8]);
                 break;
         }
     }

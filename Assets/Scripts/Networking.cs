@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 // Use plugin namespace
@@ -85,6 +86,7 @@ public class Networking : MonoBehaviour {
                     loadingCanvas.SetActive(false);
                     break;
                 case (int)MSG_TYPE.ADD_RESOURCE:
+                    Debug.Log("ADD " + stringMsg);
                     arr = stringMsg.Split(' ');
                     tileController.SetTile(new Vector3Int(int.Parse(arr[1]), int.Parse(arr[2]), 0), (TILE_TYPE)int.Parse(arr[0]), true);
                     break;
@@ -129,6 +131,7 @@ public class Networking : MonoBehaviour {
         // Add OnClose event listener
         ws.OnClose += (WebSocketCloseCode code) => {
             UIManager.LogPhrase("closed", code.ToString());
+            SceneManager.LoadScene(0);
         };
 
         // Connect to the server
