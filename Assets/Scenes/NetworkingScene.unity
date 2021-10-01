@@ -7581,7 +7581,7 @@ MonoBehaviour:
   playerController: {fileID: 1794150434}
   loadingCanvas: {fileID: 494189300}
   protocol: ws
-  ip: localhost
+  ip: lea.ddnss.de
   port: 4242
 --- !u!1 &1548593876
 GameObject:
