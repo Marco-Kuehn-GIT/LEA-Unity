@@ -2306,6 +2306,13 @@ MonoBehaviour:
   resourceTile:
   - {fileID: 11400000, guid: eb40191e8210621418481d7a191bc792, type: 2}
   - {fileID: 11400000, guid: a45a367f47a846a43b4d54745b4426f8, type: 2}
+  - {fileID: 11400000, guid: ca87489cbdd6f8f4daf8cdb084c5586e, type: 2}
+  - {fileID: 11400000, guid: 0341d9450b4249343b885617defbbbd5, type: 2}
+  - {fileID: 11400000, guid: f7ef3cead4357054789178d9ab1f6304, type: 2}
+  - {fileID: 11400000, guid: 5aedb015d89a5d542989e7dc789564ea, type: 2}
+  - {fileID: 11400000, guid: 1c1940f7ed526af42811924de7dbeffe, type: 2}
+  - {fileID: 11400000, guid: 76916a48eefbceb45ba2de2ffe7bebf2, type: 2}
+  - {fileID: 11400000, guid: fb4754007fe75ac4689ebdc46e376a6e, type: 2}
   mapSize: 200
   noisiness: 0.02
   secondNoisiness: 0.05
@@ -2470,7 +2477,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1831746293}
   m_HandleRect: {fileID: 1831746292}
   m_Direction: 2
-  m_Value: 0.000000035813994
+  m_Value: -0.000000035813994
   m_Size: 0.5215033
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6301,7 +6308,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7574,7 +7581,7 @@ MonoBehaviour:
   playerController: {fileID: 1794150434}
   loadingCanvas: {fileID: 494189300}
   protocol: ws
-  ip: lea.ddnss.de
+  ip: localhost
   port: 4242
 --- !u!1 &1548593876
 GameObject:
@@ -9171,7 +9178,7 @@ MonoBehaviour:
   - {fileID: 909485830}
   - {fileID: 1856059257}
   - {fileID: 1001516488}
-  inventory: 000000000200000003000000
+  inventory: 0000000002000000030000000400000005000000060000000700000008000000090000000a000000
   curInventorySpace: 0
 --- !u!1 &1810712011
 GameObject:
@@ -9358,7 +9365,7 @@ RectTransform:
   m_Father: {fileID: 13297865}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.000000017136877}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.5215033}
   m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 20, y: 10}
