@@ -5,18 +5,20 @@ using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour
 {
-    private int health = 10;
-        public Text healthText;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        healthText.text = "Leben:" + health;
-        
+    [SerializeField] private Sprite FullHeart;
+    [SerializeField] private Sprite EmptyHeart;
+    [SerializeField] private Image[] Hearts;
+
+    private void Start() {
+    }
+    public void LifeChange(int health) {
+        for (int i = 0; i < Hearts.Length; i++) {
+            if (i < health) {
+                Hearts[i].sprite = FullHeart;
+            } else {
+                Hearts[i].sprite = EmptyHeart;
+            }
+        }
     }
 }
