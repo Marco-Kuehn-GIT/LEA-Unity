@@ -6308,7 +6308,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.9923077, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9179,6 +9179,19 @@ MonoBehaviour:
   - {fileID: 1856059257}
   - {fileID: 1001516488}
   inventory: 0000000002000000030000000400000005000000060000000700000008000000090000000a000000
+  inventoryBorders:
+  - {fileID: 131952751}
+  - {fileID: 165363280}
+  - {fileID: 2114322999}
+  - {fileID: 1208793535}
+  - {fileID: 791525643}
+  - {fileID: 410561591}
+  - {fileID: 1962792825}
+  - {fileID: 487751857}
+  - {fileID: 1249180421}
+  - {fileID: 1551209712}
+  notSelected: {r: 1, g: 1, b: 1, a: 1}
+  selected: {r: 1, g: 0, b: 0.0699749, a: 1}
   curInventorySpace: 0
 --- !u!1 &1810712011
 GameObject:
