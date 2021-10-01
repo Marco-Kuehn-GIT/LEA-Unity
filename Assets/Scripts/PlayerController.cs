@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 [RequireComponent(typeof (Rigidbody2D))]
@@ -16,6 +17,10 @@ public class PlayerController : MonoBehaviour{
     public GameObject[] skin;
 
     [SerializeField] private List<TILE_TYPE> inventory;
+    [SerializeField] private Image[] inventoryBorders;
+
+    [SerializeField] private Color notSelected;
+    [SerializeField] private Color selected;
 
     public int curInventorySpace = 0;
 
@@ -26,6 +31,7 @@ public class PlayerController : MonoBehaviour{
 
     private void Awake() {
         rgBody = GetComponent<Rigidbody2D>();
+        inventoryBorders[curInventorySpace].color = selected;
     }
 
     private void Update() {
@@ -33,8 +39,10 @@ public class PlayerController : MonoBehaviour{
         movingDir.y = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.Tab)) {
+            inventoryBorders[curInventorySpace].color = notSelected;
             curInventorySpace++;
             curInventorySpace %= inventory.Count;
+            inventoryBorders[curInventorySpace].color = selected;
         }
 
         if (Input.GetMouseButtonDown(0)) {
