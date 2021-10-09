@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PauseMenue : MonoBehaviour
-{
-    // Start is called before the first frame update
+public class PauseMenue : MonoBehaviour{
+
     public GameObject Canvas;
+
     public void PauseQuit() {
         Networking.Instance.ws.Close();
         SceneManager.LoadScene(0);

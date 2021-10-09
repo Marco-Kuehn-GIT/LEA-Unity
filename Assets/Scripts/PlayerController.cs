@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour{
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource hittingAudioSource;
 
     [SerializeField] private float movementSpeed = 1f;
 
@@ -28,6 +29,10 @@ public class PlayerController : MonoBehaviour{
 
     private Vector2 movingDir;
     private bool sendNoMsgs = false;
+
+    private Vector2 hittingPosition;
+    private float curHitTime = 0;
+    [SerializeField] private float hitTime = 1;
 
     private void Awake() {
         rgBody = GetComponent<Rigidbody2D>();
@@ -51,7 +56,28 @@ public class PlayerController : MonoBehaviour{
             int x = (int)vec.x;
             int y = (int)vec.y;
 
-            Debug.Log("x" + x + " y" + y);
+            if (vec.x < 0) {
+                x--;
+            }
+            if (vec.y < 0) {
+                y--;
+            }
+
+            if (inventory[curInventorySpace] == TILE_TYPE.WATER) {
+                hittingPosition = new Vector2(x, y);
+                if(tileController.GetTile(x, y) != TILE_TYPE.WATER) {
+                    hittingAudioSource.enabled = true;
+                }
+            } else {
+                Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, (int)inventory[curInventorySpace] + " " + x + " " + y);
+            }
+        }
+
+        if (Input.GetMouseButton(0)) {
+            Vector3 vec = cam.ScreenToWorldPoint(Input.mousePosition);
+
+            int x = (int)vec.x;
+            int y = (int)vec.y;
 
             if (vec.x < 0) {
                 x--;
@@ -61,10 +87,33 @@ public class PlayerController : MonoBehaviour{
             }
 
             if (inventory[curInventorySpace] == TILE_TYPE.WATER) {
-                Networking.SendMsg(MSG_TYPE.HIT_RESOURCE, x + " " + y);
-            } else {
-                Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, (int)inventory[curInventorySpace] + " " + x + " " + y);
+                if(hittingPosition.x == x && hittingPosition.y == y) {
+                    curHitTime += Time.deltaTime;
+                    if (curHitTime >= hitTime){
+                        curHitTime = 0;
+                        Networking.SendMsg(MSG_TYPE.HIT_RESOURCE, x + " " + y);
+
+                        if (tileController.GetTile(x, y) != TILE_TYPE.WATER) {
+                            hittingAudioSource.enabled = true;
+                        } else {
+                            hittingAudioSource.enabled = false;
+                        }
+                    }
+                } else {
+                    hittingPosition = new Vector2(x, y);
+                    curHitTime = 0;
+                    if (tileController.GetTile(x, y) != TILE_TYPE.WATER) {
+                        hittingAudioSource.enabled = true;
+                    } else {
+                        hittingAudioSource.enabled = false;
+                    }
+                }
             }
+        }
+
+        if (Input.GetMouseButtonUp(0)) {
+            curHitTime = 0;
+            hittingAudioSource.enabled = false;
         }
     }
 

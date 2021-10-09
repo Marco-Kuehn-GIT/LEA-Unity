@@ -1242,8 +1242,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: -1.809308}
-  m_SizeDelta: {x: 80.003, y: 55.4454}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &157123056
 MonoBehaviour:
@@ -2057,7 +2057,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 72e287c97623933409be4bb31e903fef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 75608bf9c078e2c4f886edfa615a8ec0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2262,6 +2262,7 @@ MonoBehaviour:
   - {fileID: 3558528005388089972, guid: bdd2ed3f2a21f4140badd0a3a22f9b13, type: 3}
   - {fileID: 3558528005388089972, guid: efc39168bb760d44e98ac74d799d36e9, type: 3}
   - {fileID: 3558528005388089972, guid: 1866c6a608d073540b914346d387f334, type: 3}
+  woodWallSprite: {fileID: 2758202336723302981, guid: 4685c0fdd404d7240aee4af262e116a7, type: 3}
   groundTilemap: {fileID: 614130772}
   waterTilemap: {fileID: 2127175833}
   resourcesTilemap: {fileID: 542203322}
@@ -2311,8 +2312,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7ef3cead4357054789178d9ab1f6304, type: 2}
   - {fileID: 11400000, guid: 5aedb015d89a5d542989e7dc789564ea, type: 2}
   - {fileID: 11400000, guid: 1c1940f7ed526af42811924de7dbeffe, type: 2}
+  - {fileID: 11400000, guid: 8da76abc881e2ae4a943ef3d3614dda2, type: 2}
   - {fileID: 11400000, guid: 76916a48eefbceb45ba2de2ffe7bebf2, type: 2}
-  - {fileID: 11400000, guid: fb4754007fe75ac4689ebdc46e376a6e, type: 2}
   mapSize: 200
   noisiness: 0.02
   secondNoisiness: 0.05
@@ -3342,25 +3343,25 @@ Tilemap:
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
-      e00: -2.5244127e-29
+      e00: -1.084227e-19
       e01: 0
-      e02: -3.7095095e+28
-      e03: -3.7095095e+28
-      e10: 8.59e-43
+      e02: 1.3238208e+19
+      e03: 1.3238208e+19
+      e10: 7.96e-43
       e11: 0
-      e12: 1.7e-43
-      e13: 1.7e-43
-      e20: -7.895021e-24
-      e21: -1.619483e+29
-      e22: 0.0000000011087851
-      e23: -1.619483e+29
-      e30: 4.5904e-41
-      e31: 8.6e-43
-      e32: 8.59e-43
-      e33: 8.6e-43
+      e12: 1.95e-43
+      e13: 1.95e-43
+      e20: 3.0594298e-24
+      e21: 3.91512e-40
+      e22: 4.530567
+      e23: 3.91512e-40
+      e30: 4.5905e-41
+      e31: 7.99e-43
+      e32: 7.96e-43
+      e33: 7.99e-43
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 3.2476e-41, g: 3.2476e-41, b: 3.2476e-41, a: 3.2476e-41}
+    m_Data: {r: 1.0074e-40, g: 1.0074e-40, b: 1.0074e-40, a: 1.0074e-40}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6308,7 +6309,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3333334, y: 1}
+    m_SensorSize: {x: 1.7791411, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6721,7 +6722,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9596553020e34fc4fb83014d98160ca7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72e287c97623933409be4bb31e903fef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7127,7 +7128,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000061035156, y: 1.2499}
-  m_SizeDelta: {x: 80.003, y: 82.5}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1351379415
 MonoBehaviour:
@@ -7149,7 +7150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6853316077166303748, guid: 59abd2ebb3866d5449bb5876cf56f29d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 47bcc0772023db14185591049ec200c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7745,7 +7746,6 @@ GameObject:
   - component: {fileID: 1553819831}
   - component: {fileID: 1553819830}
   - component: {fileID: 1553819829}
-  - component: {fileID: 1553819828}
   - component: {fileID: 1553819827}
   m_Layer: 5
   m_Name: CanvasPause
@@ -7767,18 +7767,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 40123349}
---- !u!114 &1553819828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553819826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eacba0bf23a64e148a7c7fcfce82517e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1553819829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8120,7 +8108,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000061035156, y: -0.000069618}
-  m_SizeDelta: {x: 80.003, y: 80}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1594631707
 MonoBehaviour:
@@ -8565,7 +8553,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e7e24023ed200134d868176d3fe2e119, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.85
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -9085,6 +9073,7 @@ GameObject:
   - component: {fileID: 1794150432}
   - component: {fileID: 1794150434}
   - component: {fileID: 1794150430}
+  - component: {fileID: 1794150435}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -9172,6 +9161,7 @@ MonoBehaviour:
   animator: {fileID: 1334372206}
   spriteRenderer: {fileID: 0}
   audioSource: {fileID: 0}
+  hittingAudioSource: {fileID: 1794150435}
   movementSpeed: 5
   skin:
   - {fileID: 1334372205}
@@ -9193,6 +9183,103 @@ MonoBehaviour:
   notSelected: {r: 1, g: 1, b: 1, a: 1}
   selected: {r: 1, g: 0, b: 0.0699749, a: 1}
   curInventorySpace: 0
+  hitTime: 1
+--- !u!82 &1794150435
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794150429}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4967d28da51b69945ac7751cd7e476ac, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1810712011
 GameObject:
   m_ObjectHideFlags: 0
