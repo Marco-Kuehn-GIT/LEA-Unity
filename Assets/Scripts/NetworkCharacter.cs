@@ -11,6 +11,10 @@ public class NetworkCharacter : MonoBehaviour{
     [SerializeField] private SpriteRenderer spriteRenderer;
     private float movingThreshold = 0.01f;
 
+    private void Start() {
+        audioSource.enabled = false;
+    }
+
     public void Move(float x, float y) {
         Vector2 posBefore = transform.position;
         transform.position = new Vector2(x, y);

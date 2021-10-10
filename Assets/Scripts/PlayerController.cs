@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour{
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource hittingAudioSource;
+    [SerializeField] private ParticleSystem hittingParticleSystem;
 
     [SerializeField] private float movementSpeed = 1f;
 
@@ -67,9 +68,11 @@ public class PlayerController : MonoBehaviour{
                 hittingPosition = new Vector2(x, y);
                 if(tileController.GetTile(x, y) != TILE_TYPE.WATER) {
                     hittingAudioSource.enabled = true;
+                    hittingParticleSystem.transform.position = hittingPosition + new Vector2(0.5f, 0.5f);
+                    hittingParticleSystem.gameObject.SetActive(true);
                 }
             } else {
-                Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, (int)inventory[curInventorySpace] + " " + x + " " + y);
+                Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, (int)inventory[curInventorySpace] + " " + x + " " + y + " 4");
             }
         }
 
@@ -91,21 +94,26 @@ public class PlayerController : MonoBehaviour{
                     curHitTime += Time.deltaTime;
                     if (curHitTime >= hitTime){
                         curHitTime = 0;
-                        Networking.SendMsg(MSG_TYPE.HIT_RESOURCE, x + " " + y);
-
-                        if (tileController.GetTile(x, y) != TILE_TYPE.WATER) {
-                            hittingAudioSource.enabled = true;
-                        } else {
+                        if (tileController.GetHealth(x, y) <= 1) {
                             hittingAudioSource.enabled = false;
+                            hittingParticleSystem.gameObject.SetActive(false);
+                        } else {
+                            hittingAudioSource.enabled = true;
+                            hittingParticleSystem.gameObject.SetActive(true);
                         }
+
+                        Networking.SendMsg(MSG_TYPE.HIT_RESOURCE, x + " " + y);
                     }
                 } else {
                     hittingPosition = new Vector2(x, y);
                     curHitTime = 0;
                     if (tileController.GetTile(x, y) != TILE_TYPE.WATER) {
                         hittingAudioSource.enabled = true;
+                        hittingParticleSystem.transform.position = hittingPosition + new Vector2(0.5f, 0.5f);
+                        hittingParticleSystem.gameObject.SetActive(true);
                     } else {
                         hittingAudioSource.enabled = false;
+                        hittingParticleSystem.gameObject.SetActive(false);
                     }
                 }
             }
@@ -114,6 +122,7 @@ public class PlayerController : MonoBehaviour{
         if (Input.GetMouseButtonUp(0)) {
             curHitTime = 0;
             hittingAudioSource.enabled = false;
+            hittingParticleSystem.gameObject.SetActive(false);
         }
     }
 

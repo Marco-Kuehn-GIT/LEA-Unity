@@ -2000,6 +2000,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327311087}
   m_CullTransparentMesh: 1
+--- !u!198 &352276159 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2451086054287345057, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+  m_PrefabInstance: {fileID: 786270577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &366474852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3832,23 +3837,23 @@ Tilemap:
     m_Data:
       e00: -1.084227e-19
       e01: 0
-      e02: -22899040
-      e03: -22899040
-      e10: 6.5e-43
+      e02: 1.2103996e+33
+      e03: 1.2103996e+33
+      e10: 5.14e-43
       e11: 0
-      e12: 1.37e-43
-      e13: 1.37e-43
-      e20: 4.4214518e+10
-      e21: 3.02053e-40
-      e22: 11.438576
-      e23: 3.02053e-40
-      e30: 4.5905e-41
-      e31: 6.53e-43
-      e32: 6.5e-43
-      e33: 6.53e-43
+      e12: 9.7e-44
+      e13: 9.7e-44
+      e20: 3.966242e-31
+      e21: 1.766936e-39
+      e22: 4.349781
+      e23: 1.766936e-39
+      e30: 4.5904e-41
+      e31: 5.17e-43
+      e32: 5.14e-43
+      e33: 5.17e-43
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 3.02053e-40, g: 3.02053e-40, b: 3.02053e-40, a: 3.02053e-40}
+    m_Data: {r: 1.766936e-39, g: 1.766936e-39, b: 1.766936e-39, a: 1.766936e-39}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4710,6 +4715,67 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &786270577
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5040483966372004749, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_Name
+      value: Hitting Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 5040483966372004749, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026669588297421812, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026669588297421812, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026669588297421812, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026669588297421812, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026669588297421812, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026669588297421812, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026669588297421812, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026669588297421812, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026669588297421812, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026669588297421812, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026669588297421812, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a36759ba7d064804988d1cd6e9ca76fc, type: 3}
 --- !u!1 &791525641
 GameObject:
   m_ObjectHideFlags: 0
@@ -9162,6 +9228,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   audioSource: {fileID: 0}
   hittingAudioSource: {fileID: 1794150435}
+  hittingParticleSystem: {fileID: 352276159}
   movementSpeed: 5
   skin:
   - {fileID: 1334372205}

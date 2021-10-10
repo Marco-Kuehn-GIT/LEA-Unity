@@ -102,18 +102,21 @@ public class TileController : MonoBehaviour{
         spritesForMap = new GameObject[sizeX, sizeY];
         health = new int[sizeX, sizeY];
 
-        string test = "";
         try {
             for (int i = 0; i < sizeX * sizeY; i++) {
                 map[i / sizeX, i % sizeY] = (TILE_TYPE)((int)initString[i]);
-                test = i + " " + (i + sizeX * sizeY) + " " + i / sizeX + " " + i % sizeY;
-                resourceMap[i / sizeX, i % sizeY] = (TILE_TYPE)((int)initString[i + sizeX * sizeY]);
+            }
+            for (int i = sizeX * sizeY; i < initString.Length; i+=4) {
+                int x = (int)initString[i];
+                int y = (int)initString[i + 1];
+                resourceMap[x, y] = (TILE_TYPE)((int)initString[i + 2]);
+                health[x, y] = (int)initString[i + 3];
 
+                Debug.Log($"{x} {y} {(int)initString[i + 2]} {(int)initString[i + 3]}");
             }
         } catch (System.Exception e) {
             Debug.Log(e);
         }
-
             
 
         mapSize = sizeX;
@@ -128,11 +131,20 @@ public class TileController : MonoBehaviour{
                 try {
                     SetTile(position, transformedMap[x, y]);
                     SetTile(position, resourceMap[x, y]);
+                    hitTile(position, health[x, y]);
                 } catch (System.Exception e) {
                     Debug.Log(e);
                 }
             }
         }
+    }
+
+    internal void setHealth(Vector3Int pos, int value) {
+        hitTile(pos, value);
+    }
+
+    internal int GetHealth(int x, int y) {
+        return health[x, y];
     }
 
     internal void hitTile(Vector3Int pos, int h) {
@@ -240,7 +252,7 @@ public class TileController : MonoBehaviour{
                 resourceMap[position.x, position.y] = type;
                 break;
             case TILE_TYPE.WOOD_Wall:
-                addSprite (woodWallSprite, position, new Vector2(0.5f, 1f));
+                addSprite (woodWallSprite, position, new Vector2(0.5f, 0.875f));
                 resourcesTilemap.SetTile(position, resourceTile[7]);
                 resourceMap[position.x, position.y] = type;
                 break;

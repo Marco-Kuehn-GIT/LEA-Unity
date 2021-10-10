@@ -6,7 +6,7 @@ public class MusicController : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         if (!PlayerPrefs.HasKey("musicVolume")) {
-            PlayerPrefs.SetFloat("musicVolume", 1);
+            PlayerPrefs.SetFloat("musicVolume", 0.5f);
             Load();
         } else {
             Load();
