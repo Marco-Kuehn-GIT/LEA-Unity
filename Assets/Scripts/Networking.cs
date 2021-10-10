@@ -72,6 +72,7 @@ public class Networking : MonoBehaviour {
                     break;
                 case (int)MSG_TYPE.CHAT:
                     UIManager.LogPhrase("msg", Enum.GetName(typeof(MSG_TYPE), msgType), stringMsg);
+                    UIManager.AddChatMsg(stringMsg);
                     break;
                 case (int)MSG_TYPE.MOVE:
                     arr = stringMsg.Split(' ');
