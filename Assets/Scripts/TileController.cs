@@ -14,8 +14,8 @@ public enum TILE_TYPE {
     CRYSTAL,
     FIRE,
     VASE,
+    WOOD_Wall,
     WOOD_BLOCK,
-    TRASH,
     WATER_L,
     WATER_R,
     WATER_T,
@@ -34,6 +34,7 @@ public enum TILE_TYPE {
 public class TileController : MonoBehaviour{
 
     [SerializeField] private GameObject[] treeSprites;
+    [SerializeField] private GameObject woodWallSprite;
 
 
     [SerializeField] private Tilemap groundTilemap;
@@ -101,18 +102,21 @@ public class TileController : MonoBehaviour{
         spritesForMap = new GameObject[sizeX, sizeY];
         health = new int[sizeX, sizeY];
 
-    string test = "";
         try {
             for (int i = 0; i < sizeX * sizeY; i++) {
                 map[i / sizeX, i % sizeY] = (TILE_TYPE)((int)initString[i]);
-                test = i + " " + (i + sizeX * sizeY) + " " + i / sizeX + " " + i % sizeY;
-                resourceMap[i / sizeX, i % sizeY] = (TILE_TYPE)((int)initString[i + sizeX * sizeY]);
+            }
+            for (int i = sizeX * sizeY; i < initString.Length; i+=4) {
+                int x = (int)initString[i];
+                int y = (int)initString[i + 1];
+                resourceMap[x, y] = (TILE_TYPE)((int)initString[i + 2]);
+                health[x, y] = (int)initString[i + 3];
 
+                Debug.Log($"{x} {y} {(int)initString[i + 2]} {(int)initString[i + 3]}");
             }
         } catch (System.Exception e) {
             Debug.Log(e);
         }
-
             
 
         mapSize = sizeX;
@@ -127,6 +131,7 @@ public class TileController : MonoBehaviour{
                 try {
                     SetTile(position, transformedMap[x, y]);
                     SetTile(position, resourceMap[x, y]);
+                    hitTile(position, health[x, y]);
                 } catch (System.Exception e) {
                     Debug.Log(e);
                 }
@@ -134,9 +139,17 @@ public class TileController : MonoBehaviour{
         }
     }
 
+    internal void setHealth(Vector3Int pos, int value) {
+        hitTile(pos, value);
+    }
+
+    internal int GetHealth(int x, int y) {
+        return health[x, y];
+    }
+
     internal void hitTile(Vector3Int pos, int h) {
         health[pos.x, pos.y] = h;
-        Debug.Log("h: "+ h);
+        Debug.Log("h: "+ h + " "+ resourceMap[pos.x, pos.y]);
         if(h <= 1 && resourceMap[pos.x, pos.y] == TILE_TYPE.TREE) {
             delSprite(pos);
         }
@@ -154,11 +167,16 @@ public class TileController : MonoBehaviour{
         return transformedMap;
     }
 
+    public TILE_TYPE GetTile(int x, int y) {
+        return resourceMap[x, y];
+    }
+
     public void SetTile(Vector3Int position, TILE_TYPE type, bool isGameActive = false) {
         switch (type) {
             case TILE_TYPE.WATER:
                 if (isGameActive) {
                     resourcesTilemap.SetTile(position, null);
+                    resourceMap[position.x, position.y] = TILE_TYPE.WATER;
                     delSprite(position);
                 }
                 break;
@@ -206,38 +224,54 @@ public class TileController : MonoBehaviour{
                 break;
             case TILE_TYPE.STONE:
                 resourcesTilemap.SetTile(position, resourceTile[0]);
+                resourceMap[position.x, position.y] = type;
                 break;
             case TILE_TYPE.TREE:
-                SpriteRenderer tree = Instantiate(getRandomTree(), new Vector3(position.x + 0.5f, position.y, 0), Quaternion.identity).GetComponent<SpriteRenderer>();
-                tree.sortingOrder = 150 - position.y;
-                spritesForMap[position.x, position.y] = tree.gameObject;
+                addSprite(getRandomTree(), position, new Vector2(0.5f, 0));
                 resourcesTilemap.SetTile(position, resourceTile[1]);
+                resourceMap[position.x, position.y] = type;
                 break;
             case TILE_TYPE.CHEST:
                 resourcesTilemap.SetTile(position, resourceTile[2]);
+                resourceMap[position.x, position.y] = type;
                 break;
             case TILE_TYPE.BUSH:
                 resourcesTilemap.SetTile(position, resourceTile[3]);
+                resourceMap[position.x, position.y] = type;
                 break;
             case TILE_TYPE.CRYSTAL:
                 resourcesTilemap.SetTile(position, resourceTile[4]);
+                resourceMap[position.x, position.y] = type;
                 break;
             case TILE_TYPE.FIRE:
                 resourcesTilemap.SetTile(position, resourceTile[5]);
+                resourceMap[position.x, position.y] = type;
                 break;
             case TILE_TYPE.VASE:
                 resourcesTilemap.SetTile(position, resourceTile[6]);
+                resourceMap[position.x, position.y] = type;
+                break;
+            case TILE_TYPE.WOOD_Wall:
+                addSprite (woodWallSprite, position, new Vector2(0.5f, 0.875f));
+                resourcesTilemap.SetTile(position, resourceTile[7]);
+                resourceMap[position.x, position.y] = type;
                 break;
             case TILE_TYPE.WOOD_BLOCK:
-                resourcesTilemap.SetTile(position, resourceTile[7]);
-                break;
-            case TILE_TYPE.TRASH:
                 resourcesTilemap.SetTile(position, resourceTile[8]);
+                resourceMap[position.x, position.y] = type;
                 break;
         }
     }
 
+    private void addSprite(GameObject gObj, Vector3Int position, Vector2 offset) {
+        SpriteRenderer spriteRenderer = Instantiate(gObj, new Vector3(position.x + offset.x, position.y + offset.y, 0), Quaternion.identity).GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = 150 - position.y;
+        spritesForMap[position.x, position.y] = spriteRenderer.gameObject;
+    }
+
     private void delSprite(Vector3Int position) {
+        Debug.Log("spritesForMap[position.x, position.y] " + position.x + " " + position.y);
+        Debug.Log(spritesForMap[position.x, position.y]);
         if (spritesForMap[position.x, position.y] != null) {
             Destroy(spritesForMap[position.x, position.y]);
             spritesForMap[position.x, position.y] = null;

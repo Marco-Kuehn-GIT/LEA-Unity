@@ -13,6 +13,15 @@ public class UIManager : MonoBehaviour{
     [SerializeField] private Text debugText;
     [SerializeField] private CanvasGroup debugConsole;
 
+
+    [SerializeField] private CanvasGroup chatGroup;
+    [SerializeField] private Image[] chatBgImgs;
+    [SerializeField] private Mask chatMask;
+    [SerializeField] private RectTransform chatRect;
+    [SerializeField] private Text chatText;
+    [SerializeField] private InputField chatInput;
+    private int chatLength = 1;
+
     private void Awake() {
         Instance = this;
     }
@@ -26,6 +35,9 @@ public class UIManager : MonoBehaviour{
         if(Input.GetKeyDown(KeyCode.Caret) || Input.GetKeyDown(KeyCode.Backslash)) {
             toggleDebugConsole();
         }
+        if (!chatGroup.interactable && Input.GetKeyDown(KeyCode.T)) {
+            setChatActive(!chatGroup.interactable);
+        }
     }
 
     // Show/hide the debug console
@@ -35,6 +47,32 @@ public class UIManager : MonoBehaviour{
         } else {
             debugConsole.alpha = 0;
         }
+    }
+
+    private void setChatActive(bool active) {
+        chatGroup.interactable = active;
+        foreach (Image img in chatBgImgs) {
+            img.enabled = active;
+        }
+        chatMask.enabled = !active;
+    }
+
+    public static void AddChatMsg(string msg) {
+        UIManager.Instance.addChatMsg(msg);
+    }
+
+    public void addChatMsg(string msg) {
+        chatText.text += $"\n{msg}";
+        chatRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ++chatLength * 34);
+    }
+
+    public void SendChatMsg() {
+        if (chatInput.text.Length >= 1) {
+            addChatMsg(chatInput.text);
+            Networking.SendMsg(MSG_TYPE.CHAT, chatInput.text);
+        }
+        chatInput.text = "";
+        setChatActive(false);
     }
 
     public static void LogMsg(string msg) {
@@ -49,22 +87,30 @@ public class UIManager : MonoBehaviour{
         if (inputField.text.StartsWith("/")) {
             String[] cmd = inputField.text.Substring(1).Split(' ');
             Debug.Log("cmd " + cmd[0]);
+
+            int health = 4;
             switch (cmd[0]) {
                 case "help":
-                    LogMsg("tp <x> <y>, fill-all <TILE_TYPE>; fill <TILE_TYPE> <x> <y>, info");
+                    LogMsg("tp <x> <y>, fill-all <TILE_TYPE> <HEALTH = 4>; fill <TILE_TYPE> <x> <y> <HEALTH = 4>, info");
                     break;
                 case "tp":
                     playerController.transform.position = new Vector3(int.Parse(cmd[1]), int.Parse(cmd[2]), 0);
                     break;
                 case "fill-all":
+                    if (cmd.Length > 2) {
+                        health = int.Parse(cmd[2]);
+                    }
                     for (int i = 0; i < 100; i++) {
                         for (int j = 0; j < 100; j++) {
-                            Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, int.Parse(cmd[1]) + " " + i + " " + j);
+                            Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, int.Parse(cmd[1]) + " " + i + " " + j + " " + health);
                         }
                     }
                     break;
                 case "fill":
-                    Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, int.Parse(cmd[1]) + " " + int.Parse(cmd[2]) + " " + int.Parse(cmd[3]));
+                    if (cmd.Length > 2) {
+                        health = int.Parse(cmd[2]);
+                    }
+                    Networking.SendMsg(MSG_TYPE.ADD_RESOURCE, int.Parse(cmd[1]) + " " + int.Parse(cmd[2]) + " " + int.Parse(cmd[3]) + " " + health);
                     break;
                 case "info":
                     string log = "I: ";

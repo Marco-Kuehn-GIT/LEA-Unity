@@ -72,6 +72,7 @@ public class Networking : MonoBehaviour {
                     break;
                 case (int)MSG_TYPE.CHAT:
                     UIManager.LogPhrase("msg", Enum.GetName(typeof(MSG_TYPE), msgType), stringMsg);
+                    UIManager.AddChatMsg(stringMsg);
                     break;
                 case (int)MSG_TYPE.MOVE:
                     arr = stringMsg.Split(' ');
@@ -88,7 +89,9 @@ public class Networking : MonoBehaviour {
                 case (int)MSG_TYPE.ADD_RESOURCE:
                     Debug.Log("ADD " + stringMsg);
                     arr = stringMsg.Split(' ');
-                    tileController.SetTile(new Vector3Int(int.Parse(arr[1]), int.Parse(arr[2]), 0), (TILE_TYPE)int.Parse(arr[0]), true);
+                    Vector3Int pos = new Vector3Int(int.Parse(arr[1]), int.Parse(arr[2]), 0);
+                    tileController.SetTile(pos, (TILE_TYPE)int.Parse(arr[0]), true);
+                    tileController.setHealth(pos, int.Parse(arr[3]));
                     break;
                 case (int)MSG_TYPE.HIT_RESOURCE:
                     Debug.Log("HIT_RESOURCE " + stringMsg);
